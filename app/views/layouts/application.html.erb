@@ -1,15 +1,58 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LittleExpenseManager</title>
+    <title>Little Expense Manager</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-  </head>
 
+    <%= javascript_pack_tag 'application' %>
+    <%= stylesheet_pack_tag 'application' %>
+    <%= favicon_link_tag 'favicon.ico' %>
+  </head>
   <body>
-    <%= yield %>
+    <section class="hero is-info is-bold is-fullheight">
+      <div class="hero-head">
+        <nav class="navbar">
+          <div class="container">
+            <div class="navbar-brand">
+              <span class="navbar-burger burger" data-target="navbarMenuHeroA">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </div>
+            <div id="navbarMenuHeroA" class="navbar-menu">
+              <div class="navbar-end">
+                <a class="navbar-item is-active" href="/">
+                  Home
+                </a>
+                <a class="navbar-item">
+                  Login
+                </a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div class="hero-body">
+        <%= yield %>
+      </div>
+
+      <div class="hero-foot">
+        <div class="container">
+          <div class="content has-text-centered">
+            <p>
+              Icon made by <a href="https://www.shareicon.net/author/animals">animals</a> from <a href="www.flaticon.com">www.flaticon.com</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
