@@ -1,24 +1,2 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# lem - little expense manager
+[![Maintainability](https://api.codeclimate.com/v1/badges/9ef17988c4b308de63ce/maintainability)](https://codeclimate.com/github/hovancik/little_expense_manager/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/9ef17988c4b308de63ce/test_coverage)](https://codeclimate.com/github/hovancik/little_expense_manager/test_coverage)[![Build Status](https://travis-ci.org/hovancik/little_expense_manager.svg?branch=master)](https://travis-ci.org/hovancik/little_expense_manager)
