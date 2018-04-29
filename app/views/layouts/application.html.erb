@@ -28,12 +28,25 @@
             </div>
             <div id="navbarMenuHeroA" class="navbar-menu">
               <div class="navbar-end">
-                <a class="navbar-item is-active" href="/">
-                  Home
-                </a>
-                <a class="navbar-item">
-                  Login
-                </a>
+                <% if logged_in? %>
+                  <a href=<%= root_path %> class="navbar-item">
+                    Home
+                  </a>
+                  <span class="navbar-item">
+                    <a href=<%= session_path(1) %> data-method="delete" class="button is-inverted">
+                      <span>Logout</span>
+                    </a>
+                  </span>
+                <% else %>
+                  <a href=<%= root_path %> class="navbar-item">
+                    Home
+                  </a>
+                  <span class="navbar-item">
+                    <a href=<%= new_session_path %> class="button is-inverted">
+                      <span>Login</span>
+                    </a>
+                  </span>
+                <% end %>
               </div>
             </div>
           </div>
