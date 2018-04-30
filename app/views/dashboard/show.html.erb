@@ -1,0 +1,11 @@
+<div class="container">
+  <% @accounts.each do |account|%>
+    <div class="box">
+      <div class="content">
+        <p>
+          <strong><%= account.name %></strong> <small><%= account.description %></small>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>
