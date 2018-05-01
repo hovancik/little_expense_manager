@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(session_params[:password])
       session[:auth_token] = user.auth_token
       render json: {
-        redirectUrl: root_path
+        redirectUrl: dashboard_url
       }, status: 200
     else
       render json: {
