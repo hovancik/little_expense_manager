@@ -28,11 +28,11 @@
             </div>
             <div id="navbarMenuHeroA" class="navbar-menu">
               <div class="navbar-end">
-                <a href=<%= root_path %> class="navbar-item <%= is_active?(root_path) %>">
+                <a href=<%= root_path %> class="navbar-item <%= active?(root_path) %>">
                   Home
                 </a>
                 <% if logged_in? %>
-                  <a href=<%= dashboard_path %> class="navbar-item <%= is_active?(dashboard_path) %>">
+                  <a href=<%= dashboard_path %> class="navbar-item <%= active?(dashboard_path) %>">
                     Dashboard
                   </a>
                   <span class="navbar-item">

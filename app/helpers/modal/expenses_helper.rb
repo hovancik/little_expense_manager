@@ -1,0 +1,2 @@
+module Modal::ExpensesHelper
+end

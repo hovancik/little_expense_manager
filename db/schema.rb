@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_29_180748) do
+ActiveRecord::Schema.define(version: 2018_05_01_161240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,26 @@ ActiveRecord::Schema.define(version: 2018_04_29_180748) do
     t.index ["user_id"], name: "index_accounts_users_on_user_id"
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "payer_id"
+    t.bigint "account_id"
+    t.datetime "paid_at", null: false
+    t.decimal "amount", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_expenses_on_account_id"
+    t.index ["category_id"], name: "index_expenses_on_category_id"
+    t.index ["payer_id"], name: "index_expenses_on_payer_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "name"
@@ -40,6 +60,21 @@ ActiveRecord::Schema.define(version: 2018_04_29_180748) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  create_table "users_expenses", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "expense_id"
+    t.decimal "amount", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["expense_id"], name: "index_users_expenses_on_expense_id"
+    t.index ["user_id"], name: "index_users_expenses_on_user_id"
+  end
+
   add_foreign_key "accounts_users", "accounts"
   add_foreign_key "accounts_users", "users"
+  add_foreign_key "expenses", "accounts"
+  add_foreign_key "expenses", "categories"
+  add_foreign_key "expenses", "users", column: "payer_id"
+  add_foreign_key "users_expenses", "expenses"
+  add_foreign_key "users_expenses", "users"
 end

@@ -21,8 +21,8 @@ Right now, I am working on MVP features, so that I can use it. Some data need to
 - [ ] user can add account
 - [ ] user can invite another user to shared account
 - [x] user can see accounts in dashboard
-- [ ] user can add new expense from dashboard
-- [ ] user can see spent-this-month stats in dashboard
+- [x] user can add new expense from dashboard
+- [x] user can see spent-this-month stats in dashboard
 - [ ] user can see who-should-pay-next in dashboard for shared accounts
 - [ ] user can see stats for categories
 

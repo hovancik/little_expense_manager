@@ -2,8 +2,17 @@
   <% @accounts.each do |account|%>
     <div class="box">
       <div class="content">
+        <div data-controller="load-modal" data-load-modal-url="<%= new_modal_expense_path(account_id: account.id)%>">
+          <button class="button is-primary tooltip is-pulled-right" data-action="load-modal#open"
+            data-tooltip="Add new expense to the <%= account.name%> account">
+            +
+          </button>
+        </div>
         <p>
           <strong><%= account.name %></strong> <small><%= account.description %></small>
+        </p>
+        <p>
+          <small>spent <%= account.this_month_expenses %> of your <i>favourite</i> currency</small>
         </p>
       </div>
     </div>
