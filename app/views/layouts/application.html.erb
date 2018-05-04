@@ -28,9 +28,12 @@
             </div>
             <div id="navbarMenuHeroA" class="navbar-menu">
               <div class="navbar-end">
+                <a href=<%= root_path %> class="navbar-item <%= active?(root_path) %>">
+                  Home
+                </a>
                 <% if logged_in? %>
-                  <a href=<%= root_path %> class="navbar-item">
-                    Home
+                  <a href=<%= dashboard_path %> class="navbar-item <%= active?(dashboard_path) %>">
+                    Dashboard
                   </a>
                   <span class="navbar-item">
                     <a href=<%= session_path(1) %> data-method="delete" class="button is-inverted">
@@ -38,9 +41,6 @@
                     </a>
                   </span>
                 <% else %>
-                  <a href=<%= root_path %> class="navbar-item">
-                    Home
-                  </a>
                   <span class="navbar-item">
                     <a href=<%= new_session_path %> class="button is-inverted">
                       <span>Login</span>

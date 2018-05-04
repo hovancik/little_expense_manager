@@ -1,0 +1,54 @@
+<%= form_for @expense, data: {controller: "submit", target: "submit.form"} do |f| %>
+  <div class="box">
+    <div class="field">
+      <label class="label">Account</label>
+      <div class="control">
+        <div class="select">
+          <input class="input" value="<%= @account.name %>" disabled>
+          <%= f.hidden_field :account_id, value: @account.id %>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Paid by</label>
+      <div class="control">
+        <div class="select">
+          <%= f.collection_select :payer_id, @account.users, :id, :name, {selected: current_user.id}, {} %>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Category</label>
+      <div class="control">
+        <div class="select">
+          <%= f.collection_select :category_id, Category.all, :id, :name, {selected: current_user.id}, {} %>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Amount</label>
+      <div class="control">
+        <%= f.number_field :amount, class: 'input' %>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Date</label>
+      <div class="control">
+        <%= f.date_field :paid_at, class: 'input' %>
+      </div>
+    </div>
+    <%= f.fields_for :users_expenses do |ff| %>
+      <%= ff.hidden_field :user_id, value: ff.object.user_id %>
+      <div class="field">
+        <label class="label">amount for <%= ff.object.user.name %></label>
+        <div class="control">
+          <%= ff.number_field :amount, class: 'input' %>
+        </div>
+      </div>
+    <% end %>
+    <%= f.submit "Add", class:"button is-success", data: {action: "click->submit#submit"} %>
+    <div>
+      <p class="help is-danger" data-target="submit.error"></p>
+    </div>
+  </div>
+<% end %>
