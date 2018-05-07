@@ -1,5 +1,5 @@
 <%= form_for @expense, data: {controller: "submit", target: "submit.form"} do |f| %>
-  <div class="box">
+  <div class="box" data-controller="expense-amount">
     <div class="field">
       <label class="label">Account</label>
       <div class="control">
@@ -28,7 +28,7 @@
     <div class="field">
       <label class="label">Amount</label>
       <div class="control">
-        <%= f.number_field :amount, class: 'input' %>
+        <%= f.number_field :amount, class: 'input', data: {target: 'expense-amount.amount', action: 'expense-amount#divide'} %>
       </div>
     </div>
     <div class="field">
@@ -42,7 +42,7 @@
       <div class="field">
         <label class="label">amount for <%= ff.object.user.name %></label>
         <div class="control">
-          <%= ff.number_field :amount, class: 'input' %>
+          <%= ff.number_field :amount, class: 'input', data: {target: 'expense-amount.useramount'} %>
         </div>
       </div>
     <% end %>

@@ -6,6 +6,14 @@ class Expense < ApplicationRecord
 
   validates :paid_at, presence: true
   validates :amount, presence: true
+  validate :users_expenses_add_up_to_amount, on: [:create, :update]
 
   accepts_nested_attributes_for :users_expenses
+
+  private
+
+  def users_expenses_add_up_to_amount
+    errors.add(:amount, "#{users_expenses.map(&:amount).join('+')}!=#{amount}") \
+      unless amount === users_expenses.sum(&:amount)
+  end
 end
