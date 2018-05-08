@@ -2,6 +2,7 @@
   "name": "little_expense_manager",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free-webfonts": "^1.0.8",
     "@rails/webpacker": "3.4",
     "bulma": "^0.7.1",
     "bulma-tooltip": "^1.0.4",
