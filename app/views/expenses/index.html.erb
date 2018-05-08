@@ -15,6 +15,7 @@
         <th>Category</th>
         <th>Paid at</th>
         <th>Amount</th>
+        <th>Note</th>
         <% if @account.users.size > 1 %>
           <% @account.users.each do |user| %>
             <th><%= user.name %></th>
@@ -27,10 +28,11 @@
         <tr>
           <% if @account.users.size > 1 %>
             <td><%= expense.payer.name %></td>
-          <% end %>  
+          <% end %>
           <td><%= expense.category.name %></td>
           <td><%= expense.paid_at.strftime("%Y-%m-%d") %></td>
           <td><%= expense.amount %></td>
+          <td><%= expense.note %></td>
           <% if @account.users.size > 1 %>
             <% expense.users_expenses.each do |users_expense| %>
               <td><%= users_expense.amount %></td>
