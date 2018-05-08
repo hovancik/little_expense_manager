@@ -5,7 +5,7 @@ class ExpensesController < ApplicationController
     expense = Expense.create(expense_params)
     if expense.valid?
       render json: {
-        redirectUrl: dashboard_url
+        redirectUrl: account_expenses_path(expense.account)
       }, status: 200
     else
       render json: {
@@ -25,6 +25,6 @@ class ExpensesController < ApplicationController
 
   def expense_params
     params.require(:expense).permit(:payer_id, :account_id, :amount, :paid_at,
-      :category_id, users_expenses_attributes: [:user_id, :amount])
+      :category_id, :note, users_expenses_attributes: [:user_id, :amount])
   end
 end

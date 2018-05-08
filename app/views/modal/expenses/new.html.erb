@@ -37,6 +37,12 @@
         <%= f.date_field :paid_at, class: 'input' %>
       </div>
     </div>
+    <div class="field">
+      <label class="label">Note</label>
+      <div class="control">
+        <%= f.text_field :note, class: 'input' %>
+      </div>
+    </div>
     <%= f.fields_for :users_expenses do |ff| %>
       <%= ff.hidden_field :user_id, value: ff.object.user_id %>
       <div class="field">
