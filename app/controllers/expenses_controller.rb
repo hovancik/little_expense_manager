@@ -14,6 +14,13 @@ class ExpensesController < ApplicationController
     end
   end
 
+  def index
+    @account = Account.find(params[:account_id])
+    @expenses = @account.expenses
+      .where(paid_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_month)
+      .order(:paid_at)
+  end
+
   private
 
   def expense_params

@@ -9,7 +9,7 @@
           </button>
         </div>
         <p>
-          <strong><%= account.name %></strong> <small><%= account.description %></small>
+          <strong><%= link_to account.name, account_expenses_path(account) %></strong> <small><%= account.description %></small>
         </p>
         <p>
           <small>spent <%= account.this_month_expenses %> of your <i>favourite</i> currency</small>

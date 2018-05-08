@@ -1,0 +1,43 @@
+<div class="container">
+  <div data-controller="load-modal" data-load-modal-url="<%= new_modal_expense_path(account_id: @account.id)%>">
+    <button class="button is-primary tooltip is-pulled-right" data-action="load-modal#open"
+      data-tooltip="Add new expense to the <%= @account.name%> account">
+      +
+    </button>
+  </div>
+  <h1 class="title">Expenses for <%= @account.name %></h1>
+  <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+    <thead>
+      <tr>
+        <% if @account.users.size > 1 %>
+          <th>Payer</th>
+        <% end %>
+        <th>Category</th>
+        <th>Paid at</th>
+        <th>Amount</th>
+        <% if @account.users.size > 1 %>
+          <% @account.users.each do |user| %>
+            <th><%= user.name %></th>
+          <% end %>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @expenses.each do |expense| %>
+        <tr>
+          <% if @account.users.size > 1 %>
+            <td><%= expense.payer.name %></td>
+          <% end %>  
+          <td><%= expense.category.name %></td>
+          <td><%= expense.paid_at.strftime("%Y-%m-%d") %></td>
+          <td><%= expense.amount %></td>
+          <% if @account.users.size > 1 %>
+            <% expense.users_expenses.each do |users_expense| %>
+              <td><%= users_expense.amount %></td>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
