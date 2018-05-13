@@ -21,7 +21,7 @@
       <label class="label">Category</label>
       <div class="control">
         <div class="select">
-          <%= f.collection_select :category_id, Category.all, :id, :name, {selected: current_user.id}, {} %>
+          <%= f.collection_select :category_id, Category.all_by_the_most_used(@account.id), :id, :name, {}, {} %>
         </div>
       </div>
     </div>
@@ -34,7 +34,7 @@
     <div class="field">
       <label class="label">Date</label>
       <div class="control">
-        <%= f.date_field :paid_at, class: 'input' %>
+        <%= f.date_field :paid_at, class: 'input', value: Time.zone.now.strftime('%Y-%m-%d') %>
       </div>
     </div>
     <div class="field">
