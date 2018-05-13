@@ -20,9 +20,28 @@
         <p>
           <strong><%= link_to account.name, account_expenses_path(account) %></strong> <small><%= account.description %></small>
         </p>
-        <p>
-          <small>spent <%= account.this_month_expenses %> of your <i>favourite</i> currency</small>
-        </p>
+        <div class="field is-grouped is-grouped-multiline">
+          <div class="control">
+            <div class="tags has-addons">
+              <span class="tag">spent</span>
+              <span class="tag is-info"><%= account.expenses.sum(:amount)%></span>
+            </div>
+          </div>
+          <div class="control">
+            <div class="tags has-addons">
+              <span class="tag">expenses</span>
+              <span class="tag is-primary"><%= account.expenses.length %></span>
+            </div>
+          </div>
+          <% if account.users.size > 1 %>
+            <div class="control">
+              <div class="tags has-addons">
+                <span class="tag">next payer</span>
+                <span class="tag is-link"><%= who_should_pay_next(account) %></span>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   <% end %>
