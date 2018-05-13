@@ -23,7 +23,7 @@ Right now, I am working on MVP features, so that I can use it. Some data need to
 - [x] user can see accounts in dashboard
 - [x] user can add new expense from dashboard
 - [x] user can see spent-this-month stats in dashboard
-- [ ] user can see who-should-pay-next in dashboard for shared accounts
+- [x] user can see who-should-pay-next in dashboard for shared accounts
 - [x] user can see list of expenses for current month
 - [ ] user can edit expenses
 - [ ] user can see stats for categories

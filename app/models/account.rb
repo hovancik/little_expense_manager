@@ -1,6 +1,7 @@
 class Account < ApplicationRecord
   has_and_belongs_to_many :users
   has_many :expenses
+  has_many :users_expenses, through: :expenses
 
   def this_month_expenses
     now = Time.zone.now
