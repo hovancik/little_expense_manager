@@ -9,4 +9,8 @@ class Modal::ExpensesController < ApplicationController
       @expense.users_expenses.build(user_id: user.id)
     end
   end
+
+  def edit
+    @expense = Expense.find(params[:id])
+  end
 end
