@@ -2,7 +2,7 @@ class Expense < ApplicationRecord
   belongs_to :category
   belongs_to :payer, class_name: 'User'
   belongs_to :account
-  has_many :users_expenses
+  has_many :users_expenses, dependent: :destroy
 
   validates :paid_at, presence: true
   validates :amount, presence: true

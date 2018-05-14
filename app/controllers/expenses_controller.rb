@@ -21,10 +21,29 @@ class ExpensesController < ApplicationController
       .order(:paid_at)
   end
 
+  def update
+    expense = Expense.find(params[:id])
+    if expense.update(expense_params)
+      render json: {
+        redirectUrl: account_expenses_path(expense.account)
+      }, status: 200
+    else
+      render json: {
+        errors: "Bad params. (#{expense.errors.messages})"
+      }, status: 422
+    end
+  end
+
+  def destroy
+    expense = Expense.find(params[:id])
+    expense.destroy
+    redirect_to account_expenses_path(expense.account)
+  end
+
   private
 
   def expense_params
     params.require(:expense).permit(:payer_id, :account_id, :amount, :paid_at,
-      :category_id, :note, users_expenses_attributes: [:user_id, :amount])
+      :category_id, :note, users_expenses_attributes: [:user_id, :amount, :id])
   end
 end
