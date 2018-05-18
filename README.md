@@ -26,7 +26,7 @@ Right now, I am working on MVP features, so that I can use it. Some data need to
 - [x] user can see who-should-pay-next in dashboard for shared accounts
 - [x] user can see list of expenses for current month
 - [x] user can edit and remove expenses
-- [ ] user can see stats for categories
+- [x] user can see account's stats and graphs
 
 
 ## Credits
