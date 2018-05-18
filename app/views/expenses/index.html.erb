@@ -8,83 +8,43 @@
         </a>
       </span>
     </div>
-    <h1 class="is-size-3 has-text-dark">Expenses for <%= @account.name %> (<%= Time.zone.now.strftime('%B %Y')%>)</h1>
-    <div class="field is-grouped is-grouped-multiline">
-      <div class="control">
-        <div class="tags has-addons">
-          <span class="tag">spent</span>
-          <span class="tag is-info"><%= @expenses.sum(:amount)%></span>
+    <h1 class="is-size-4 has-text-dark">Expenses for <%= @account.name %></h1>
+  </div>
+  <div class="box">
+    <%= form_for 'account_data', url: loader_account_data_path(@account), data: {controller: "loader", target: "loader.form", :"loader-container-id" => "account-expenses"} do |f| %>
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Range</label>
         </div>
-      </div>
-      <div class="control">
-        <div class="tags has-addons">
-          <span class="tag">expenses</span>
-          <span class="tag is-primary"><%= @expenses.length %></span>
-        </div>
-      </div>
-      <% if @account.users.size > 1 %>
-        <div class="control">
-          <div class="tags has-addons">
-            <span class="tag">next payer</span>
-            <span class="tag is-link"><%= who_should_pay_next(@account) %></span>
+        <div class="field-body">
+          <div class="field">
+            <p class="control has-icons-left">
+              <%= f.date_field :from, class: 'input', placeholder: 'from', value: Time.zone.now.beginning_of_month.strftime('%Y-%m-%d')%>
+              <span class="icon is-small is-left">
+                <i class="fas fa-calendar-alt"></i>
+              </span>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control has-icons-left has-icons-right">
+              <%= f.date_field :to, class: 'input', placeholder: 'to', value: Time.zone.now.end_of_month.strftime('%Y-%m-%d')%>
+              <span class="icon is-small is-left">
+                <i class="fas fa-calendar-alt"></i>
+              </span>
+            </p>
+          </div>
+          <div class="field">
+            <div class="control">
+              <%= f.submit "Update", class:"button is-block is-info is-fullwidth", data: {action: "click->loader#submit"} %>
+            </div>
           </div>
         </div>
-      <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div id="account-expenses">
+    <div class="fa-3x has-text-centered">
+      <i class="fas fa-spinner fa-pulse"></i>
     </div>
-    <table class="table is-hoverable is-fullwidth is-narrow">
-      <thead>
-        <tr>
-          <% if @account.users.size > 1 %>
-            <th>Payer</th>
-          <% end %>
-          <th>Category</th>
-          <th>Paid at</th>
-          <th>Amount</th>
-          <th>Note</th>
-          <% if @account.users.size > 1 %>
-            <% @account.users.each do |user| %>
-              <th><%= user.name %></th>
-            <% end %>
-          <% end %>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @expenses.each do |expense| %>
-          <tr>
-            <% if @account.users.size > 1 %>
-              <td><%= expense.payer.name %></td>
-            <% end %>
-            <td><%= expense.category.name %></td>
-            <td><%= expense.paid_at.strftime("%Y-%m-%d") %></td>
-            <td><%= expense.amount %></td>
-            <td><%= expense.note %></td>
-            <% if @account.users.size > 1 %>
-              <% expense.users_expenses.each do |users_expense| %>
-                <td><%= users_expense.amount %></td>
-              <% end %>
-            <% end %>
-            <td>
-              <span data-controller="load-modal" data-load-modal-url="<%= edit_modal_expense_path(expense) %>">
-                <span class="icon has-text-info">
-                  <a class="tooltip" data-action="load-modal#open"
-                    data-tooltip="Edit expense details">
-                    <i class="fas fa-edit"></i>
-                  </a>
-                </span>
-              </span>
-                <span class="icon has-text-danger">
-                  <%= link_to expense_path(expense),  class: 'tooltip',
-                    data: { method: "delete", confirm: "Are you sure you want to remove this expense?",
-                    tooltip: "Remove expense" } do %>
-                      <i class="fas fa-trash-alt"></i>
-                  <% end %>
-                </span>
-              </span>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
   </div>
 </div>

@@ -1,0 +1,147 @@
+<div class="box">
+  <div class="field is-grouped is-grouped-multiline">
+    <div class="control">
+      <div class="tags has-addons">
+        <span class="tag">spent</span>
+        <span class="tag is-info"><%= @expenses.sum(:amount)%></span>
+      </div>
+    </div>
+    <div class="control">
+      <div class="tags has-addons">
+        <span class="tag">expenses</span>
+        <span class="tag is-primary"><%= @expenses.length %></span>
+      </div>
+    </div>
+    <% if @account.users.size > 1 %>
+      <div class="control">
+        <div class="tags has-addons">
+          <span class="tag">next payer</span>
+          <span class="tag is-link"><%= who_should_pay_next(@account) %></span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="box">
+  <table class="table is-hoverable is-fullwidth is-narrow">
+    <thead>
+      <tr>
+        <% if @account.users.size > 1 %>
+          <th>Payer</th>
+        <% end %>
+        <th>Category</th>
+        <th>Paid at</th>
+        <th>Amount</th>
+        <th>Note</th>
+        <% if @account.users.size > 1 %>
+          <% @account.users.each do |user| %>
+            <th><%= user.name %></th>
+          <% end %>
+        <% end %>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @expenses.each do |expense| %>
+        <tr>
+          <% if @account.users.size > 1 %>
+            <td><%= expense.payer.name %></td>
+          <% end %>
+          <td><%= expense.category.name %></td>
+          <td><%= expense.paid_at.strftime("%Y-%m-%d") %></td>
+          <td><%= expense.amount %></td>
+          <td><%= expense.note %></td>
+          <% if @account.users.size > 1 %>
+            <% expense.users_expenses.each do |users_expense| %>
+              <td><%= users_expense.amount %></td>
+            <% end %>
+          <% end %>
+          <td>
+            <span data-controller="load-modal" data-load-modal-url="<%= edit_modal_expense_path(expense) %>">
+              <span class="icon has-text-info">
+                <a class="tooltip" data-action="load-modal#open"
+                  data-tooltip="Edit expense details">
+                  <i class="fas fa-edit"></i>
+                </a>
+              </span>
+            </span>
+              <span class="icon has-text-danger">
+                <%= link_to expense_path(expense),  class: 'tooltip',
+                  data: { method: "delete", confirm: "Are you sure you want to remove this expense?",
+                  tooltip: "Remove expense" } do %>
+                    <i class="fas fa-trash-alt"></i>
+                <% end %>
+              </span>
+            </span>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="box">
+  <div class="columns">
+    <div class="column">
+      <div class="card" data-controller="pie-chart"
+        data-pie-chart-container-id="account-expenses-chart"
+        data-pie-chart-chart-data="<%= categories_pie_chart_data(@expenses) %>">
+        <header class="card-header">
+          <p class="card-header-title">
+            Categories
+          </p>
+          <div class="card-header-icon" aria-label="more options">
+            <span class="icon tooltip" data-tooltip="Expenses by categories">
+              <i class="fas fa-question" aria-hidden="true"></i>
+            </span>
+          </div>
+        </header>
+        <div class="card-content">
+          <div class="content" id="account-expenses-chart">
+          </div>
+        </div>
+      </div>
+    </div>
+    <% if @account.users.size > 1 %>
+      <div class="column">
+        <div class="card" data-controller="pie-chart"
+          data-pie-chart-container-id="account-expenses-chart-1"
+          data-pie-chart-chart-data="<%= paid_by_pie_chart_data(@expenses) %>">
+          <header class="card-header">
+            <p class="card-header-title">
+              Paid by
+            </p>
+            <div class="card-header-icon" aria-label="more options">
+              <span class="icon tooltip" data-tooltip="Expenses by payer">
+                <i class="fas fa-question" aria-hidden="true"></i>
+              </span>
+            </div>
+          </header>
+          <div class="card-content">
+            <div class="content" id="account-expenses-chart-1">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="card" data-controller="pie-chart"
+          data-pie-chart-container-id="account-expenses-chart-2"
+          data-pie-chart-chart-data="<%= paid_for_pie_chart_data(@expenses) %>">
+          <header class="card-header">
+            <p class="card-header-title">
+              Paid for
+            </p>
+            <div class="card-header-icon" aria-label="more options">
+              <span class="icon tooltip" data-tooltip="Expenses by the account members">
+                <i class="fas fa-question" aria-hidden="true"></i>
+              </span>
+            </div>
+          </header>
+          <div class="card-content">
+            <div class="content" id="account-expenses-chart-2">
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
