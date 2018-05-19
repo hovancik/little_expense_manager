@@ -16,7 +16,7 @@ module Loader::AccountsHelper
   def paid_for_pie_chart_data(expenses)
     expenses.to_a.group_by(&:payer)
       .map do |key, value|
-        [key.name, expenses.joins(:users_expenses).where(users_expenses: {user: key}).sum(:amount)]
+        [key.name, expenses.joins(:users_expenses).where(users_expenses: {user_id: key.id}).sum('users_expenses.amount')]
       end.to_json
   end
 end
