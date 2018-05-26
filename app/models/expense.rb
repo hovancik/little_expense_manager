@@ -10,6 +10,10 @@ class Expense < ApplicationRecord
 
   accepts_nested_attributes_for :users_expenses
 
+  scope :from_this_month, -> {
+    where(paid_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_month)
+  }
+
   private
 
   def users_expenses_add_up_to_amount

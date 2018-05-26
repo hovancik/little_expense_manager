@@ -24,13 +24,13 @@
           <div class="control">
             <div class="tags has-addons">
               <span class="tag">spent</span>
-              <span class="tag is-info"><%= account.expenses.sum(:amount)%></span>
+              <span class="tag is-info"><%= account.expenses.from_this_month.sum(:amount)%></span>
             </div>
           </div>
           <div class="control">
             <div class="tags has-addons">
               <span class="tag">expenses</span>
-              <span class="tag is-primary"><%= account.expenses.length %></span>
+              <span class="tag is-primary"><%= account.expenses.from_this_month.length %></span>
             </div>
           </div>
           <% if account.users.size > 1 %>
@@ -45,4 +45,20 @@
       </div>
     </div>
   <% end %>
+  <div class="box is-pulled-right">
+    <div class="field is-grouped is-grouped-multiline">
+      <div class="control">
+        <div class="tags has-addons">
+          <span class="tag">spent</span>
+          <span class="tag is-info"><%= @my_expenses.from_this_month.sum(:amount)%></span>
+        </div>
+      </div>
+      <div class="control">
+        <div class="tags has-addons">
+          <span class="tag">expenses</span>
+          <span class="tag is-primary"><%= @my_expenses.from_this_month.length %></span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
