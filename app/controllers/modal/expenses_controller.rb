@@ -3,7 +3,7 @@ class Modal::ExpensesController < ApplicationController
   layout false
 
   def new
-    @account = Account.find(params[:account_id])
+    @account = current_user.accounts.find(params[:account_id])
     @expense = Expense.new
     @account.users.each do |user|
       @expense.users_expenses.build(user_id: user.id)
@@ -11,6 +11,6 @@ class Modal::ExpensesController < ApplicationController
   end
 
   def edit
-    @expense = Expense.find(params[:id])
+    @expense = current_user.expenses.find(params[:id])
   end
 end
