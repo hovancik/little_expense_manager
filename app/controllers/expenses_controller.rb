@@ -15,11 +15,11 @@ class ExpensesController < ApplicationController
   end
 
   def index
-    @account = Account.find(params[:account_id])
+    @account = current_user.accounts.find(params[:account_id])
   end
 
   def update
-    expense = Expense.find(params[:id])
+    expense = current_user.exepenses.find(params[:id])
     if expense.update(expense_params)
       render json: {
         redirectUrl: account_expenses_path(expense.account)
@@ -32,7 +32,7 @@ class ExpensesController < ApplicationController
   end
 
   def destroy
-    expense = Expense.find(params[:id])
+    expense = current_user.exepenses.find(params[:id])
     expense.destroy
     redirect_to account_expenses_path(expense.account)
   end
