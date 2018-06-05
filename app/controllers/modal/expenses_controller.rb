@@ -11,6 +11,7 @@ class Modal::ExpensesController < ApplicationController
   end
 
   def edit
-    @expense = current_user.expenses.find(params[:id])
+    expenses = Expenses::EditableExpensesService.new(current_user).perform
+    @expense = expenses.find(params[:id])
   end
 end
