@@ -19,7 +19,8 @@ class ExpensesController < ApplicationController
   end
 
   def update
-    expense = current_user.exepenses.find(params[:id])
+    expenses = Expenses::EditableExpensesService.new(current_user).perform
+    expense = expenses.find(params[:id])
     if expense.update(expense_params)
       render json: {
         redirectUrl: account_expenses_path(expense.account)
@@ -32,7 +33,8 @@ class ExpensesController < ApplicationController
   end
 
   def destroy
-    expense = current_user.exepenses.find(params[:id])
+    expenses = Expenses::EditableExpensesService.new(current_user).perform
+    expense = expenses.find(params[:id])
     expense.destroy
     redirect_to account_expenses_path(expense.account)
   end
