@@ -3,9 +3,19 @@
 one:
   user: one
   expense: one
-  amount: 9.99
+  amount: 5
 
 two:
   user: two
+  expense: one
+  amount: 4.99
+
+three:
+  user: two
   expense: two
   amount: 9.99
+
+four:
+  user: one
+  expense: three
+  amount: 20.99
