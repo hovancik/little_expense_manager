@@ -1,5 +1,6 @@
 class Category < ApplicationRecord
   has_many :expenses
+  has_many :buckets
 
   validates :name, presence: true
 

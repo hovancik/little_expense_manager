@@ -1,0 +1,31 @@
+<div class="box">
+  <div class="content">
+    <h1 class="is-size-5 has-text-dark">
+      Buckets for the <%= @account.name %> account
+    </h1>
+    <%= form_for @account, data: {controller: "submit", target: "submit.form"} do |form| %>
+      <%= form.fields_for :buckets do |bucket_form| %>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label"><%= bucket_form.object.category.name %></label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <%= bucket_form.number_field :amount, class: 'input' %>
+                <%= bucket_form.hidden_field :category_id, value: bucket_form.object.category.id %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= form.submit "Edit", class:"button is-success", data: {action: "click->submit#submit"} %>
+      <div>
+        <p class="help is-danger" data-target="submit.error"></p>
+      </div>
+      <div>
+        <p class="help is-success" data-target="submit.success"></p>
+      </div>
+    <% end %>
+  </div>
+</div>

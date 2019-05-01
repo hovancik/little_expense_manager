@@ -2,21 +2,29 @@
   <% @accounts.each do |account|%>
     <div class="box">
       <div class="content">
-        <div data-controller="load-modal" data-load-modal-url="<%= new_modal_expense_path(account_id: account.id)%>">
-          <span class="icon is-pulled-right has-text-info">
-            <a class="tooltip"
-              data-tooltip="List expenses of the <%= account.name%> account"
-              href="<%= account_expenses_path(account) %>">
-              <i class="fas fa-list-ol fa-lg"></i>
-            </a>
-          </span>
-          <span class="icon is-pulled-right has-text-success">
-            <a class="tooltip" data-action="load-modal#open"
-              data-tooltip="Add new expense to the <%= account.name%> account">
-              <i class="far fa-plus-square fa-lg"></i>
-            </a>
-          </span>
-        </div>
+        <span class="icon is-medium is-pulled-right has-text-link"
+         data-controller="load-modal"
+         data-load-modal-url="<%= edit_modal_account_path(account.id)%>">
+          <a class="tooltip" data-action="load-modal#open"
+            data-tooltip="Buckets for the <%= account.name%> account">
+            <i class="fa fa-coins fa-lg"></i>
+          </a>
+        </span>
+        <span class="icon is-medium is-pulled-right has-text-info">
+          <a class="tooltip"
+            data-tooltip="List expenses of the <%= account.name%> account"
+            href="<%= account_expenses_path(account) %>">
+            <i class="fas fa-list-ol fa-lg"></i>
+          </a>
+        </span>
+        <span class="icon is-medium is-pulled-right has-text-success"
+         data-controller="load-modal"
+         data-load-modal-url="<%= new_modal_expense_path(account_id: account.id)%>">
+          <a class="tooltip" data-action="load-modal#open"
+            data-tooltip="Add new expense to the <%= account.name%> account">
+            <i class="far fa-plus-square fa-lg"></i>
+          </a>
+        </span>
         <p>
           <strong><%= link_to account.name, account_expenses_path(account) %></strong> <small><%= account.description %></small>
         </p>
@@ -42,6 +50,20 @@
             </div>
           <% end %>
         </div>
+        <% if account.buckets.any? %>
+        <div class="field is-grouped is-grouped-multiline">
+            <% account.buckets.each do |bucket| %>
+              <% if bucket.set? %>
+                <div class="control">
+                  <div class="tags has-addons">
+                    <span class="tag"><%= bucket_name(bucket) %></span>
+                    <span class="tag <%= bucket_color_class(bucket) %>"><%= bucket_spent_amount(bucket) %></span>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
   <% end %>

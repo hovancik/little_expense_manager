@@ -1,7 +1,7 @@
 import { Controller } from 'stimulus'
 
 export default class extends Controller {
-  static targets = [ 'error', 'form' ]
+  static targets = [ 'error', 'success', 'form' ]
 
   connect () {
   }
@@ -18,7 +18,12 @@ export default class extends Controller {
     })
     let json = await result.json()
     if (result.ok) {
-      window.location.href = json.redirectUrl
+      if (json.redirectUrl) {
+        window.location.href = json.redirectUrl
+      } else {
+        setTimeout(()=> this.successTarget.textContent = "", 2000)
+        this.successTarget.textContent = "Saved!"
+      }
     } else {
       this.errorTarget.textContent = json.errors
     }
