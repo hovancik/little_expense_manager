@@ -3,6 +3,7 @@ class Account < ApplicationRecord
   has_many :expenses
   has_many :users_expenses, through: :expenses
   has_many :buckets
+  has_many :categories
 
   accepts_nested_attributes_for :buckets, update_only: true
 
