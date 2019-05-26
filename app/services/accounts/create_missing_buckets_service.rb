@@ -4,7 +4,7 @@ module Accounts
     def initialize(account_id)
       @account = Account.find(account_id)
       @buckets = @account.buckets
-      @categories = Category.all
+      @categories = @account.categories
     end
 
     def perform
