@@ -1,12 +1,12 @@
 module DashboardHelper
-  def bucket_name(bucket)
+  def bucket_filled(bucket)
     bucket_stats = Buckets::BucketStatusService.new(bucket.id)
-    "#{bucket.category.name} (#{bucket_stats.percentage_filled}%)"
+    "#{bucket_stats.percentage_filled}%"
   end
 
   def bucket_spent_amount(bucket)
     bucket_stats = Buckets::BucketStatusService.new(bucket.id)
-    "#{bucket_stats.expenses_spent}/#{bucket.amount}"
+    "#{bucket_stats.expenses_spent} of #{bucket.amount}"
   end
 
   def bucket_color_class(bucket)

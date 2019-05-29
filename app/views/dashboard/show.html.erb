@@ -55,9 +55,9 @@
             <% account.buckets.each do |bucket| %>
               <% if bucket.set? %>
                 <div class="control">
-                  <div class="tags has-addons">
-                    <span class="tag"><%= bucket_name(bucket) %></span>
-                    <span class="tag <%= bucket_color_class(bucket) %>"><%= bucket_spent_amount(bucket) %></span>
+                  <div class="tags has-addons tooltip" data-tooltip="<%= bucket_spent_amount(bucket) %>">
+                    <span class="tag"><%= bucket.category.name %></span>
+                    <span class="tag <%= bucket_color_class(bucket) %>"><%= bucket_filled(bucket)%></span>
                   </div>
                 </div>
               <% end %>
