@@ -3,7 +3,7 @@ class UserMailer < ApplicationMailer
 
   def monthly_report
     @user = params[:user]
-    @month = params[:month]
+    @month = Time.at(params[:month])
     mail(to: @user.email, subject: 'Your monthly report from LEM')
   end
 end
