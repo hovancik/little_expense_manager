@@ -1,6 +1,6 @@
 class Category < ApplicationRecord
   has_many :expenses
-  has_many :buckets
+  has_one :bucket
   belongs_to :account
 
   validates :name, presence: true

@@ -14,6 +14,10 @@ class Expense < ApplicationRecord
     where(paid_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_month)
   }
 
+  scope :from_month, ->(month) {
+    where(paid_at: month.beginning_of_month..month.end_of_month)
+  }
+
   private
 
   def users_expenses_add_up_to_amount
