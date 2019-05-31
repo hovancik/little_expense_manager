@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,700">
+    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <style media="screen">
+      body {
+        font-family: Roboto;
+        font-weight: 300;
+        padding: 0 20px;
+      }
+    </style>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Your monthly report from LEM</h1>
+    <p>
+      In <%= @month.to_formatted_s(:month_and_year) %> you have spent <%= @user.expenses.from_month(@month).sum(:amount) %>.
+    </p>
+    <% @user.accounts.each do |account| %>
+      <h2>
+        <%= account.name %>
+      </h2>
+      <p>
+        There have been <%= account.expenses.from_month(@month).length %> expenses
+        totalling <%= account.expenses.from_month(@month).sum(:amount) %>.
+      </p>
+      <p>
+        <% account.expenses.from_month(@month).group_by(&:category).each do |category, expenses| %>
+          <b><%= category.name %></b> - <%= expenses.length %> expenses
+          totalling <%= expenses.sum(&:amount) %>
+          <% if category.bucket.present? && !category.bucket.amount.zero? %>
+            from bucket of <%= category.bucket.amount %>.
+          <% end %>
+          <br/>
+        <% end %>
+      </p>
+    <% end %>
+  </body>
+</html>
