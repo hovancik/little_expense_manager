@@ -12,7 +12,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
       params: { session: {email: "", password: ""} }
     assert_response :unprocessable_entity
     assert_equal '{"errors":"Bad email or password."}', @response.body
-    assert_equal 'application/json', @response.content_type
+    assert_equal 'application/json; charset=utf-8', @response.content_type
   end
 
 end

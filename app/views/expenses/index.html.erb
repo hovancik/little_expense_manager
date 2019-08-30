@@ -1,14 +1,14 @@
 <div class="container">
   <div class="box">
     <div data-controller="load-modal" data-load-modal-url="<%= new_modal_expense_path(account_id: @account.id)%>">
-      <span class="icon is-pulled-right has-text-success">
-        <a class="tooltip" data-action="load-modal#open"
+      <span class="icon is-pulled-right">
+        <a class="tooltip has-text-success" data-action="load-modal#open"
           data-tooltip="Add new expense to the <%= @account.name %> account">
           <i class="far fa-plus-square fa-2x"></i>
         </a>
       </span>
     </div>
-    <h1 class="is-size-4 has-text-dark">Expenses for <%= @account.name %></h1>
+    <h1 class="is-size-4 has-text-greys-dark">Expenses for <%= @account.name %></h1>
   </div>
   <div class="box">
     <%= form_for 'account_data', url: loader_account_data_path(@account), data: {controller: "loader", target: "loader.form", :"loader-container-id" => "account-expenses"} do |f| %>

@@ -58,15 +58,16 @@
           <% end %>
           <td>
             <span data-controller="load-modal" data-load-modal-url="<%= edit_modal_expense_path(expense) %>">
-              <span class="icon has-text-info">
-                <a class="tooltip" data-action="load-modal#open"
+              <span class="icon">
+                <a class="tooltip has-text-info" data-action="load-modal#open"
                   data-tooltip="Edit expense details">
                   <i class="fas fa-edit"></i>
                 </a>
               </span>
             </span>
-              <span class="icon has-text-danger">
-                <%= link_to expense_path(expense),  class: 'tooltip',
+            <span>
+              <span class="icon">
+                <%= link_to expense_path(expense),  class: 'tooltip has-text-danger',
                   data: { method: "delete", confirm: "Are you sure you want to remove this expense?",
                   tooltip: "Remove expense" } do %>
                     <i class="fas fa-trash-alt"></i>
