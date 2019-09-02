@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: 'no-reply@lem.technology'
+  default from: 'no-reply@lemur.app'
 
   def monthly_report
     @user = params[:user]
