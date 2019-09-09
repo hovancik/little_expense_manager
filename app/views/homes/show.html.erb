@@ -1,11 +1,31 @@
-<div class="container has-text-centered">
-  <p class="image is-128x128" style="margin: auto">
-    <%= image_tag 'lem256.svg' %>
-  </p>
-  <p class="title">
-    lem
-  </p>
-  <p class="subtitle">
-    little expense manager
-  </p>
-</div>
+<section class="hero is-info is-bold is-fullheight">
+  <div class="hero-head">
+    <%= render 'shared/nav' %>
+  </div>
+
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-vcentered"">
+        <div class="column is-offset-1 is-5">
+          <h1 class="title is-1 is-light is-semibold is-spaced">
+            Hi, my name is Lem.
+          </h1>
+          <h2 class="subtitle is-5 has-text-white">
+            I am simple, yet powerful expense manager for couples and individuals.
+            I'll help you to track your monthly expenses, create buckets for your spendings and let you see who should pay next.
+            Plus more.
+          </h2>
+        </div>
+        <div class="column is-offset-1 is-5">
+          <figure class="image is-square" style="margin:0 auto;width:256px; ">
+            <%= image_tag 'lem256.svg' %>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="hero-foot">
+    <%= render 'shared/footer' %>
+  </footer>
+</section>
