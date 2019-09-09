@@ -15,58 +15,6 @@
     <%= favicon_link_tag 'favicon.ico' %>
   </head>
   <body>
-    <section class="hero is-info is-bold is-fullheight">
-      <div class="hero-head">
-        <nav class="navbar">
-          <div class="container">
-            <div class="navbar-brand">
-              <span class="navbar-burger burger" data-target="navbarMenuHeroA" onclick="document.querySelector('.navbar-menu').classList.toggle('is-active');">
-                <span></span>
-                <span></span>
-                <span></span>
-              </span>
-            </div>
-            <div id="navbarMenuHeroA" class="navbar-menu">
-              <div class="navbar-end">
-                <a href=<%= root_path %> class="navbar-item <%= active?(root_path) %>">
-                  Home
-                </a>
-                <% if logged_in? %>
-                  <a href=<%= dashboard_path %> class="navbar-item <%= active?(dashboard_path) %>">
-                    Dashboard
-                  </a>
-                  <span class="navbar-item">
-                    <a href=<%= session_path(1) %> data-method="delete" class="button is-inverted">
-                      <span>Logout</span>
-                    </a>
-                  </span>
-                <% else %>
-                  <span class="navbar-item">
-                    <a href=<%= new_session_path %> class="button is-inverted">
-                      <span>Login</span>
-                    </a>
-                  </span>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </nav>
-      </div>
-
-      <div class="hero-body">
-        <%= yield %>
-      </div>
-
-      <div class="hero-foot">
-        <div class="container">
-          <div class="content has-text-centered">
-            <p>
-              Icon made by <a href="https://www.shareicon.net/author/animals" class="has-text-white">
-              animals</a> from <a href="https://www.flaticon.com" class="has-text-white">www.flaticon.com</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <%= yield %>
   </body>
 </html>

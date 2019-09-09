@@ -1,29 +1,41 @@
-<div class="container has-text-centered">
-  <div class="column is-4 is-offset-4">
-    <h3 class="title">Login</h3>
-    <div class="box">
-      <%= form_for :session, url: {action: "create"}, data: {controller: "submit", target: "submit.form"} do |f| %>
-        <div class="field">
-          <label class="label">Email</label>
-          <div class="control">
-            <%= f.text_field :email, class: 'input' %>
-          </div>
+<section class="hero is-info is-bold is-fullheight">
+  <div class="hero-head">
+    <%= render 'shared/nav' %>
+  </div>
+
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="column is-4 is-offset-4">
+        <h3 class="title">Login</h3>
+        <div class="box">
+          <%= form_for :session, url: {action: "create"}, data: {controller: "submit", target: "submit.form"} do |f| %>
+            <div class="field">
+              <label class="label">Email</label>
+              <div class="control">
+                <%= f.text_field :email, class: 'input' %>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Password</label>
+              <div class="control">
+                <%= f.password_field :password, class: 'input' %>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <%= f.submit "Login", class:"button is-block is-info is-large is-fullwidth", data: {action: "click->submit#submit"} %>
+              </div>
+            </div>
+            <div>
+              <p class="help is-danger" data-target="submit.error"></p>
+            </div>
+          <% end %>
         </div>
-        <div class="field">
-          <label class="label">Password</label>
-          <div class="control">
-            <%= f.password_field :password, class: 'input' %>
-          </div>
-        </div>
-        <div class="field">
-          <div class="control">
-            <%= f.submit "Login", class:"button is-block is-info is-large is-fullwidth", data: {action: "click->submit#submit"} %>
-          </div>
-        </div>
-        <div>
-          <p class="help is-danger" data-target="submit.error"></p>
-        </div>
-      <% end %>
+      </div>
     </div>
   </div>
-</div>
+
+  <footer class="hero-foot">
+    <%= render 'shared/footer' %>
+  </footer>
+</section>
