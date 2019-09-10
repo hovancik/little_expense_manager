@@ -1,50 +1,62 @@
-<div class="container">
-  <div class="box">
-    <div data-controller="load-modal" data-load-modal-url="<%= new_modal_expense_path(account_id: @account.id)%>">
-      <span class="icon is-pulled-right">
-        <a class="tooltip has-text-success" data-action="load-modal#open"
-          data-tooltip="Add new expense to the <%= @account.name %> account">
-          <i class="far fa-plus-square fa-2x"></i>
-        </a>
-      </span>
-    </div>
-    <h1 class="is-size-4 has-text-greys-dark">Expenses for <%= @account.name %></h1>
+<section class="hero is-info is-bold is-fullheight">
+  <div class="hero-head">
+    <%= render 'shared/nav' %>
   </div>
-  <div class="box">
-    <%= form_for 'account_data', url: loader_account_data_path(@account), data: {controller: "loader", target: "loader.form", :"loader-container-id" => "account-expenses"} do |f| %>
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Range</label>
+
+  <div class="hero-body">
+    <div class="container">
+      <div class="box">
+        <div data-controller="load-modal" data-load-modal-url="<%= new_modal_expense_path(account_id: @account.id)%>">
+          <span class="icon is-pulled-right">
+            <a class="tooltip has-text-success" data-action="load-modal#open"
+              data-tooltip="Add new expense to the <%= @account.name %> account">
+              <i class="far fa-plus-square fa-2x"></i>
+            </a>
+          </span>
         </div>
-        <div class="field-body">
-          <div class="field">
-            <p class="control has-icons-left">
-              <%= f.date_field :from, class: 'input', placeholder: 'from', value: Time.zone.now.beginning_of_month.strftime('%Y-%m-%d')%>
-              <span class="icon is-small is-left">
-                <i class="fas fa-calendar-alt"></i>
-              </span>
-            </p>
-          </div>
-          <div class="field">
-            <p class="control has-icons-left has-icons-right">
-              <%= f.date_field :to, class: 'input', placeholder: 'to', value: Time.zone.now.end_of_month.strftime('%Y-%m-%d')%>
-              <span class="icon is-small is-left">
-                <i class="fas fa-calendar-alt"></i>
-              </span>
-            </p>
-          </div>
-          <div class="field">
-            <div class="control">
-              <%= f.submit "Update", class:"button is-block is-info is-fullwidth", data: {action: "click->loader#submit"} %>
+        <h1 class="is-size-4 has-text-greys-dark">Expenses for <%= @account.name %></h1>
+      </div>
+      <div class="box">
+        <%= form_for 'account_data', url: loader_account_data_path(@account), data: {controller: "loader", target: "loader.form", :"loader-container-id" => "account-expenses"} do |f| %>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Range</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <p class="control has-icons-left">
+                  <%= f.date_field :from, class: 'input', placeholder: 'from', value: Time.zone.now.beginning_of_month.strftime('%Y-%m-%d')%>
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-calendar-alt"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                  <%= f.date_field :to, class: 'input', placeholder: 'to', value: Time.zone.now.end_of_month.strftime('%Y-%m-%d')%>
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-calendar-alt"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <%= f.submit "Update", class:"button is-block is-info is-fullwidth", data: {action: "click->loader#submit"} %>
+                </div>
+              </div>
             </div>
           </div>
+        <% end %>
+      </div>
+      <div id="account-expenses">
+        <div class="fa-3x has-text-centered">
+          <i class="fas fa-spinner fa-pulse"></i>
         </div>
       </div>
-    <% end %>
-  </div>
-  <div id="account-expenses">
-    <div class="fa-3x has-text-centered">
-      <i class="fas fa-spinner fa-pulse"></i>
     </div>
   </div>
-</div>
+
+  <footer class="hero-foot">
+    <%= render 'shared/footer' %>
+  </footer>
+</section>
