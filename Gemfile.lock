@@ -58,8 +58,6 @@ GEM
       zeitwerk (~> 2.1, >= 2.1.8)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
-    archive-zip (0.12.0)
-      io-like (~> 0.3.0)
     bcrypt (3.1.13)
     bindex (0.8.1)
     bootsnap (1.4.5)
@@ -76,9 +74,6 @@ GEM
       xpath (~> 3.2)
     childprocess (1.0.1)
       rake (< 13.0)
-    chromedriver-helper (2.1.1)
-      archive-zip (~> 0.10)
-      nokogiri (~> 1.8)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
     delayed_job (4.1.8)
@@ -105,7 +100,6 @@ GEM
       domain_name (~> 0.5)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
-    io-like (0.3.0)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
     json (2.2.0)
@@ -227,6 +221,10 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    webdrivers (4.1.2)
+      nokogiri (~> 1.6)
+      rubyzip (~> 1.0)
+      selenium-webdriver (>= 3.0, < 4.0)
     webpacker (4.0.7)
       activesupport (>= 4.2)
       rack-proxy (>= 0.6.1)
@@ -246,7 +244,6 @@ DEPENDENCIES
   bootsnap (~> 1.4, >= 1.4.5)
   byebug
   capybara (~> 3.28)
-  chromedriver-helper
   delayed_job_active_record
   delayed_job_recurring
   dotenv-rails
@@ -266,6 +263,7 @@ DEPENDENCIES
   tzinfo-data
   uglifier (~> 4.1, >= 4.1.20)
   web-console (~> 4.0, >= 4.0.1)
+  webdrivers
   webpacker
 
 RUBY VERSION
