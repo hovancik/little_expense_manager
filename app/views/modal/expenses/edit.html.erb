@@ -1,60 +1,68 @@
-<%= form_for @expense, data: {controller: "submit", target: "submit.form"} do |f| %>
-  <div class="box" data-controller="expense-amount">
-    <div class="field">
-      <label class="label">Account</label>
-      <div class="control">
-        <div class="select">
-          <input class="input" value="<%= @expense.account.name %>" disabled>
-          <%= f.hidden_field :account_id, value: @expense.account.id %>
-        </div>
-      </div>
-    </div>
-    <div class="field">
-      <label class="label">Paid by</label>
-      <div class="control">
-        <div class="select">
-          <%= f.collection_select :payer_id, @expense.account.users, :id, :name, {}, {} %>
-        </div>
-      </div>
-    </div>
-    <div class="field">
-      <label class="label">Category</label>
-      <div class="control">
-        <div class="select">
-          <%= f.collection_select :category_id, Category.all_by_the_most_used(@expense.account.id), :id, :name, {}, {} %>
-        </div>
-      </div>
-    </div>
-    <div class="field">
-      <label class="label">Amount</label>
-      <div class="control">
-        <%= f.number_field :amount, class: 'input', data: {target: 'expense-amount.amount', action: 'expense-amount#divide'} %>
-      </div>
-    </div>
-    <div class="field">
-      <label class="label">Date</label>
-      <div class="control">
-        <%= f.date_field :paid_at, class: 'input' %>
-      </div>
-    </div>
-    <div class="field">
-      <label class="label">Note</label>
-      <div class="control">
-        <%= f.text_field :note, class: 'input' %>
-      </div>
-    </div>
-    <%= f.fields_for :users_expenses do |ff| %>
-      <%= ff.hidden_field :user_id, value: ff.object.user_id %>
+<%= form_for @expense, data: { controller: "submit", "submit-refreshurl": @refresh_url,
+        "submit-refresh": @refresh_id } do |f| %>
+  <div class="modal-background" data-action="keydown@window->modal#close"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Edit expense</p>
+      <button class="delete" aria-label="close" data-action="modal#close"></button>
+    </header>
+    <section class="modal-card-body" data-controller="expense-amount">
       <div class="field">
-        <label class="label">amount for <%= ff.object.user.name %></label>
+        <label class="label">Account</label>
         <div class="control">
-          <%= ff.number_field :amount, class: 'input', data: {target: 'expense-amount.useramount'} %>
+          <div class="select">
+            <input class="input" value="<%= @expense.account.name %>" disabled>
+            <%= f.hidden_field :account_id, value: @expense.account.id %>
+          </div>
         </div>
       </div>
-    <% end %>
-    <%= f.submit "Edit", class:"button is-success", data: {action: "click->submit#submit"} %>
-    <div>
-      <p class="help is-danger" data-target="submit.error"></p>
-    </div>
+      <div class="field">
+        <label class="label">Paid by</label>
+        <div class="control">
+          <div class="select">
+            <%= f.collection_select :payer_id, @expense.account.users, :id, :name, {}, {} %>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Category</label>
+        <div class="control">
+          <div class="select">
+            <%= f.collection_select :category_id, Category.all_by_the_most_used(@expense.account.id), :id, :name, {}, {} %>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Amount</label>
+        <div class="control">
+          <%= f.number_field :amount, class: 'input', data: {target: 'expense-amount.amount', action: 'expense-amount#divide'} %>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Date</label>
+        <div class="control">
+          <%= f.date_field :paid_at, class: 'input' %>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Note</label>
+        <div class="control">
+          <%= f.text_field :note, class: 'input' %>
+        </div>
+      </div>
+      <%= f.fields_for :users_expenses do |ff| %>
+        <%= ff.hidden_field :user_id, value: ff.object.user_id %>
+        <div class="field <%= is_hidden_for(@expense.account)%>">
+          <label class="label">Amount for <%= ff.object.user.name %></label>
+          <div class="control">
+            <%= ff.number_field :amount, class: 'input', data: {target: 'expense-amount.useramount'} %>
+          </div>
+        </div>
+      <% end %>
+    </section>
+    <footer class="modal-card-foot">
+      <%= f.submit "Edit expense", class:"button is-link", data: {action: "click->submit#submit"} %>
+      <button class="button" data-action="modal#close">Cancel</button>
+    </footer>
   </div>
 <% end %>

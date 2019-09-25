@@ -73,3 +73,8 @@ gem 'mailgun-ruby'
 # Background jobs
 gem 'delayed_job_active_record'
 gem 'delayed_job_recurring'
+
+# for data series
+gem 'groupdate'
+# for graphs
+gem "chartkick"

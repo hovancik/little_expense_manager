@@ -1,9 +1,12 @@
-<div class="box">
-  <div class="content">
-    <h1 class="is-size-5 has-text-dark">
-      Buckets for the <%= @account.name %> account
-    </h1>
-    <%= form_for @account, data: {controller: "submit", target: "submit.form"} do |form| %>
+<%= form_for @account, data: {controller: "submit", "submit-refreshurl": @refresh_url,
+        "submit-refresh": @refresh_id } do |form| %>
+  <div class="modal-background" data-action="keydown@window->modal#close"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Buckets for the <%= @account.name %> account</p>
+      <button class="delete" aria-label="close" data-action="modal#close"></button>
+    </header>
+    <section class="modal-card-body">
       <%= form.fields_for :buckets do |bucket_form| %>
         <div class="field is-horizontal">
           <div class="field-label is-normal">
@@ -19,13 +22,11 @@
           </div>
         </div>
       <% end %>
-      <%= form.submit "Edit", class:"button is-success", data: {action: "click->submit#submit"} %>
-      <div>
-        <p class="help is-danger" data-target="submit.error"></p>
-      </div>
-      <div>
-        <p class="help is-success" data-target="submit.success"></p>
-      </div>
-    <% end %>
+      <div class="notification is-danger is-hidden" data-target="submit.error"></div>
+    </section>
+    <footer class="modal-card-foot">
+      <%= form.submit "Save changes", class:"button is-link", data: {action: "click->submit#submit"} %>
+      <button class="button" data-action="modal#close">Cancel</button>
+    </footer>
   </div>
-</div>
+<% end %>

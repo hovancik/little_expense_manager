@@ -8,9 +8,13 @@ class AccountsController < ApplicationController
       }, status: 200
     else
       render json: {
-        errors: "Bad params. (#{account.errors.messages})"
+        errors: "Error has occured. (#{account.errors.full_messages.join(', ')})"
       }, status: 422
     end
+  rescue => e
+    render json: {
+      errors: "Error has occured. (#{e.message})"
+    }, status: 422
   end
 
   private
