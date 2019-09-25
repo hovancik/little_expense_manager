@@ -1,5 +1,5 @@
 class Modal::ExpensesController < ApplicationController
-  before_action :require_login
+  before_action :require_login, :set_refresh_params
   layout false
 
   def new
@@ -11,6 +11,11 @@ class Modal::ExpensesController < ApplicationController
   end
 
   def edit
+    expenses = Expenses::EditableExpensesService.new(current_user).perform
+    @expense = expenses.find(params[:id])
+  end
+
+  def show
     expenses = Expenses::EditableExpensesService.new(current_user).perform
     @expense = expenses.find(params[:id])
   end

@@ -11,6 +11,5 @@ class Account < ApplicationRecord
     now = Time.zone.now
     expenses
       .where(paid_at: now.beginning_of_month..now.end_of_month)
-      .sum(:amount)
   end
 end

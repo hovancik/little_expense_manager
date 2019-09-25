@@ -4,30 +4,27 @@ class ExpensesController < ApplicationController
   def create
     expense = Expense.create(expense_params)
     if expense.valid?
-      render json: {
-        redirectUrl: account_expenses_path(expense.account)
-      }, status: 200
+      render json: {}, status: 200
     else
       render json: {
-        errors: "Bad params. (#{expense.errors.messages})"
+        errors: "Error has occured. (#{expense.errors.full_messages.join(', ')})"
       }, status: 422
     end
   end
 
   def index
     @account = current_user.accounts.find(params[:account_id])
+    @expenses = @account.expenses.includes(:payer,:users_expenses,:category).from_this_month
   end
 
   def update
     expenses = Expenses::EditableExpensesService.new(current_user).perform
     expense = expenses.find(params[:id])
     if expense.update(expense_params)
-      render json: {
-        redirectUrl: account_expenses_path(expense.account)
-      }, status: 200
+      render json: {}, status: 200
     else
       render json: {
-        errors: "Bad params. (#{expense.errors.messages})"
+        errors: "Error has occured. (#{expense.errors.full_messages.join(', ')})"
       }, status: 422
     end
   end
@@ -36,7 +33,13 @@ class ExpensesController < ApplicationController
     expenses = Expenses::EditableExpensesService.new(current_user).perform
     expense = expenses.find(params[:id])
     expense.destroy
-    redirect_to account_expenses_path(expense.account)
+    if expense.destroyed?
+      render json: {}, status: 200
+    else
+      render json: {
+        errors: "Error has occured. (#{expense.errors.full_messages.join(', ')})"
+      }, status: 422
+    end
   end
 
   private

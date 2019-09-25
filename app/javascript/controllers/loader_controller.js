@@ -1,7 +1,7 @@
 import { Controller } from 'stimulus'
 
 export default class extends Controller {
-  static targets = [ 'form' ]
+  static targets =  []
 
   connect () {
     this.submit()
@@ -13,7 +13,7 @@ export default class extends Controller {
     }
     let containerId = this.data.get('containerId')
     document.querySelector(`#${containerId}`).innerHTML = this._spinner
-    let form = this.formTarget
+    let form = this.element
     let body = new FormData(form)
     let action = form.action
     let method = form.method

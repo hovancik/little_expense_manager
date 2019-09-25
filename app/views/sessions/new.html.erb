@@ -8,7 +8,7 @@
       <div class="column is-4 is-offset-4">
         <h3 class="title">Login</h3>
         <div class="box">
-          <%= form_for :session, url: {action: "create"}, data: {controller: "submit", target: "submit.form"} do |f| %>
+          <%= form_for :session, url: {action: "create"}, data: {controller: "submit"} do |f| %>
             <div class="field">
               <label class="label">Email</label>
               <div class="control">
@@ -26,9 +26,7 @@
                 <%= f.submit "Login", class:"button is-block is-info is-large is-fullwidth", data: {action: "click->submit#submit"} %>
               </div>
             </div>
-            <div>
-              <p class="help is-danger" data-target="submit.error"></p>
-            </div>
+            <div class="notification is-danger is-hidden" data-target="submit.error"></div>
           <% end %>
         </div>
       </div>

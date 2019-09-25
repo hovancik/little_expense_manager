@@ -15,4 +15,9 @@ class ApplicationController < ActionController::Base
   def require_login
     redirect_to new_session_url unless logged_in?
   end
+
+  def set_refresh_params
+    @refresh_id = params[:refresh_id]
+    @refresh_url = params[:refresh_url]
+  end
 end
