@@ -23,7 +23,7 @@
             </div>
             <div class="field">
               <div class="control">
-                <%= f.submit "Login", class:"button is-block is-info is-large is-fullwidth", data: {action: "click->submit#submit"} %>
+                <%= f.button "Login", class:"button is-block is-info is-large is-fullwidth", data: {action: "click->submit#submit", target: 'submit.submit'} %>
               </div>
             </div>
             <div class="notification is-danger is-hidden" data-target="submit.error"></div>
