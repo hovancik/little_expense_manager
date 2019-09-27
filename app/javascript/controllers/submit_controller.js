@@ -6,7 +6,7 @@ import 'chart.js'
 Chartkick.use(Chart)
 
 export default class extends Controller {
-  static targets = ['error']
+  static targets = ['error', 'submit']
 
   connect() {
   }
@@ -15,6 +15,8 @@ export default class extends Controller {
     if (event) {
       event.preventDefault()
     }
+    this.submitTarget.disabled = true
+    this.submitTarget.classList.add('is-loading')
     let form = this.element
     let body = new FormData(form)
     let action = form.action
@@ -27,10 +29,11 @@ export default class extends Controller {
     })
     let json = await result.json()
     if (result.ok) {
+      this.errorTarget.classList.add('is-hidden')
       if (json.redirectUrl) {
         window.location.href = json.redirectUrl
-      }
-      if (refreshUrl) {
+        return
+      } else if (refreshUrl) {
         let refreshResult = await fetch(refreshUrl)
         let html = await refreshResult.text()
         if (refreshResult.ok) {
@@ -38,21 +41,18 @@ export default class extends Controller {
           refreshElement.innerHTML = html
           this.notify()
           // we eval Chartkick's script as it is not run when changing innerHTML
-          const scripts = refreshElement.getElementsByTagName("script");
+          const scripts = refreshElement.getElementsByTagName('script');
           for(let i=0; i < scripts.length; i++) {
             eval(scripts[i].innerHTML)
           }
         }
-      } else {
-        if (!!this.errorTarget) {
-          this.errorTarget.classList.add("is-hidden")
-        }
-        this.notify()
       }
     } else {
-      this.errorTarget.classList.remove("is-hidden")
+      this.errorTarget.classList.remove('is-hidden')
       this.errorTarget.textContent = json.errors
     }
+    this.submitTarget.disabled = false
+    this.submitTarget.classList.remove('is-loading')
   }
 
   notify () {

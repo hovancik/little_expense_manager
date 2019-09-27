@@ -61,7 +61,7 @@
       <% end %>
     </section>
     <footer class="modal-card-foot">
-      <%= f.submit "Remove", class:"button is-danger", data: {action: "click->submit#submit"} %>
+      <%= f.button "Remove", class:"button is-danger", data: {action: "click->submit#submit", target: 'submit.submit'} %>
       <button class="button" data-action="modal#close">Cancel</button>
     </footer>
   </div>

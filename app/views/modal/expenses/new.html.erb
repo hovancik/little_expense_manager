@@ -63,7 +63,7 @@
       <div class="notification is-danger is-hidden" data-target="submit.error"></div>
     </section>
     <footer class="modal-card-foot">
-      <%= f.submit "Add expense", class:"button is-link", data: {action: "click->submit#submit"} %>
+      <%= f.button "Add expense", class:"button is-link", data: {action: "click->submit#submit", target: 'submit.submit'} %>
       <button class="button" data-action="modal#close">Cancel</button>
     </footer>
   </div>

@@ -61,7 +61,7 @@
       <% end %>
     </section>
     <footer class="modal-card-foot">
-      <%= f.submit "Edit expense", class:"button is-link", data: {action: "click->submit#submit"} %>
+      <%= f.button "Edit expense", class:"button is-link", data: {action: "click->submit#submit", target: 'submit.submit'} %>
       <button class="button" data-action="modal#close">Cancel</button>
     </footer>
   </div>
