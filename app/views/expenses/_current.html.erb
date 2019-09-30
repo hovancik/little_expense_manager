@@ -59,7 +59,7 @@
       <% end %>
     </div>
     <div class="columns">
-      <div class="column">
+      <div class="column is-full">
         <div class="card">
           <header class="card-header">
             <p class="card-header-title">
@@ -123,19 +123,19 @@
                             </a>
                           </span>
                         </span>
-                    </td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    </div>
     <div class="columns is-gapless">
-      <div class="column">
+      <div class="column <%= account.users.size > 1 ? 'is-one-third' : 'is-full' %> is-full-mobile">
         <div class="card">
           <header class="card-header">
             <p class="card-header-title">
@@ -155,7 +155,7 @@
         </div>
       </div>
       <% if account.users.size > 1 %>
-        <div class="column">
+        <div class="column is-one-third is-full-mobile">
           <div class="card">
             <header class="card-header">
               <p class="card-header-title">
@@ -174,7 +174,7 @@
             </div>
           </div>
         </div>
-        <div class="column">
+        <div class="column is-one-third is-full-mobile">
           <div class="card">
             <header class="card-header">
               <p class="card-header-title">
@@ -196,7 +196,7 @@
       <% end %>
     </div>
     <div class="columns">
-      <div class="column">
+      <div class="column is-full">
         <div class="card">
           <header class="card-header">
             <p class="card-header-title">
