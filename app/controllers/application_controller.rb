@@ -3,6 +3,14 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def month(date)
+    if date.present?
+      Date.parse(date)
+    else
+      Time.zone.now
+    end
+  end
+
   def current_user
     @current_user ||= User.find_by(auth_token: session[:auth_token]) \
       if session[:auth_token]
