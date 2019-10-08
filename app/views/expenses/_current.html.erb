@@ -1,6 +1,8 @@
 <div class="container" id="current-expenses-refresh">
   <div class="box">
-    <span class="icon is-medium is-pulled-right" data-controller="load-modal has-text-link" data-load-modal-url=<%= edit_modal_account_path(account, refresh_id: 'current-expenses-refresh', refresh_url: loader_expenses_path(account_id: account.id)) %> >
+    <span class="icon is-medium is-pulled-right" data-controller="load-modal has-text-link"
+      data-load-modal-url=<%= edit_modal_account_path(account, refresh_id: 'current-expenses-refresh',
+        refresh_url: loader_expenses_path(account_id: account.id, month: month)) %> >
       <a class="tooltip" data-action="load-modal#open" data-tooltip="Edit buckets for the <%= account.name%> account">
         <i class="fa fa-coins fa-lg"></i>
       </a>
@@ -10,7 +12,7 @@
         <i class="fas fa-list-ol fa-lg"></i>
       </a>
     </span>
-    <span class="icon is-medium is-pulled-right" data-controller="load-modal" data-load-modal-url=<%= new_modal_expense_path(account_id: account.id, refresh_id: 'current-expenses-refresh', refresh_url: loader_expenses_path(account_id: account.id))%> >
+    <span class="icon is-medium is-pulled-right" data-controller="load-modal" data-load-modal-url=<%= new_modal_expense_path(account_id: account.id, refresh_id: 'current-expenses-refresh', refresh_url: loader_expenses_path(account_id: account.id, month: month))%> >
       <a class="tooltip has-text-success" data-action="load-modal#open" data-tooltip="Add new expense to the <%= account.name%> account">
         <i class="far fa-plus-square fa-lg"></i>
       </a>
@@ -24,14 +26,13 @@
         <div class="control">
           <div class="tags has-addons">
             <span class="tag">spent</span>
-            <%= puts @expenses.inspect %>
-            <span class="tag is-info"><%= @expenses.sum(&:amount)%></span>
+            <span class="tag is-info"><%= expenses.sum(&:amount)%></span>
           </div>
         </div>
         <div class="control">
           <div class="tags has-addons">
             <span class="tag">expenses</span>
-            <span class="tag is-primary"><%= @expenses.length %></span>
+            <span class="tag is-primary"><%= expenses.length %></span>
           </div>
         </div>
         <% if account.users.size > 1 %>
@@ -58,78 +59,98 @@
         </div>
       <% end %>
     </div>
+    <nav class="level">
+      <div class="level-left">
+        <div class="level-item">
+        </div>
+      </div>
+      <div class="level-right">
+        <div class="level-item">
+          <div class="field">
+            <p class="control"></p>
+          </div>
+          <div class="field has-addons">
+            <p class="control tooltip" data-tooltip="<%=month_and_year(month - 1.month) %>">
+              <%= link_to account_expenses_path(account, month: month - 1.month), class: 'button' do %>
+                <span class="icon is-small">
+                  <i class="fas fa-arrow-left"></i>
+                </span>
+              <% end %>
+            </p>
+            <p class="control">
+              <button class="button" disabled>
+                <%= month_and_year(month) %>
+              </button>
+            </p>
+            <p class="control tooltip" data-tooltip="<%=month_and_year(month + 1.month) %>">
+              <%= link_to account_expenses_path(account, month: month + 1.month), class: 'button' do %>
+                <span class="icon is-small">
+                  <i class="fas fa-arrow-right"></i>
+                </span>
+              <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </nav>
     <div class="columns">
       <div class="column is-full">
-        <div class="card">
-          <header class="card-header">
-            <p class="card-header-title">
-              Expenses
-            </p>
-            <div class="card-header-icon" aria-label="more options">
-              <span class="icon tooltip" data-tooltip="List of expenses">
-                <i class="fas fa-question" aria-hidden="true"></i>
-              </span>
-            </div>
-          </header>
-          <div class="card-content">
-            <div class="table-container">
-              <table class="table is-hoverable is-fullwidth is-narrow">
-                <thead>
-                  <tr>
-                    <% if account.users.size > 1 %>
-                      <th>Payer</th>
-                    <% end %>
-                    <th>Category</th>
-                    <th>Paid at</th>
-                    <th>Amount</th>
-                    <th>Note</th>
-                    <% if account.users.size > 1 %>
-                      <% account.users.each do |user| %>
-                        <th>For <%= user.name %></th>
-                      <% end %>
-                    <% end %>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @expenses.order(:paid_at).each do |expense| %>
-                    <tr>
-                      <% if account.users.size > 1 %>
-                        <td><%= expense.payer.name %></td>
-                      <% end %>
-                      <td><%= expense.category.name %></td>
-                      <td><%= expense.paid_at.strftime("%Y-%m-%d") %></td>
-                      <td><%= expense.amount %></td>
-                      <td><%= expense.note %></td>
-                      <% if account.users.size > 1 %>
-                        <% expense.users_expenses.each do |users_expense| %>
-                          <td><%= users_expense.amount %></td>
-                        <% end %>
-                      <% end %>
-                      <td>
-                        <span data-controller="load-modal" data-load-modal-url="<%= edit_modal_expense_path(expense, refresh_id: 'current-expenses-refresh', refresh_url: loader_expenses_path(account_id: account.id)) %>">
-                          <span class="icon">
-                            <a class="tooltip has-text-info" data-action="load-modal#open"
-                              data-tooltip="Edit expense details">
-                              <i class="fas fa-edit"></i>
-                            </a>
-                          </span>
-                        </span>
-                        <span data-controller="load-modal" data-load-modal-url="<%= modal_expense_path(expense, refresh_id: 'current-expenses-refresh', refresh_url: loader_expenses_path(account_id: account.id)) %>">
-                          <span class="icon">
-                            <a class="tooltip has-text-danger" data-action="load-modal#open"
-                              data-tooltip="Remove the expense">
-                              <i class="fas fa-trash-alt"></i>
-                            </a>
-                          </span>
-                        </span>
-                      </td>
-                    </tr>
+        <div class="table-container">
+          <table class="table is-hoverable is-fullwidth is-narrow">
+            <thead>
+              <tr>
+                <% if account.users.size > 1 %>
+                  <th>Payer</th>
+                <% end %>
+                <th>Category</th>
+                <th>Paid at</th>
+                <th>Amount</th>
+                <th>Note</th>
+                <% if account.users.size > 1 %>
+                  <% account.users.each do |user| %>
+                    <th>For <%= user.name %></th>
                   <% end %>
-                </tbody>
-              </table>
-            </div>
-          </div>
+                <% end %>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% expenses.order(:paid_at).each do |expense| %>
+                <tr>
+                  <% if account.users.size > 1 %>
+                    <td><%= expense.payer.name %></td>
+                  <% end %>
+                  <td><%= expense.category.name %></td>
+                  <td><%= expense.paid_at.strftime("%Y-%m-%d") %></td>
+                  <td><%= expense.amount %></td>
+                  <td><%= expense.note %></td>
+                  <% if account.users.size > 1 %>
+                    <% expense.users_expenses.each do |users_expense| %>
+                      <td><%= users_expense.amount %></td>
+                    <% end %>
+                  <% end %>
+                  <td>
+                    <span data-controller="load-modal" data-load-modal-url="<%= edit_modal_expense_path(expense, refresh_id: 'current-expenses-refresh', refresh_url: loader_expenses_path(account_id: account.id, month: month)) %>">
+                      <span class="icon">
+                        <a class="tooltip has-text-info" data-action="load-modal#open"
+                          data-tooltip="Edit expense details">
+                          <i class="fas fa-edit"></i>
+                        </a>
+                      </span>
+                    </span>
+                    <span data-controller="load-modal" data-load-modal-url="<%= modal_expense_path(expense, refresh_id: 'current-expenses-refresh', refresh_url: loader_expenses_path(account_id: account.id, month: month)) %>">
+                      <span class="icon">
+                        <a class="tooltip has-text-danger" data-action="load-modal#open"
+                          data-tooltip="Remove the expense">
+                          <i class="fas fa-trash-alt"></i>
+                        </a>
+                      </span>
+                    </span>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -149,7 +170,7 @@
           </header>
           <div class="card-content">
             <div class="content">
-              <%= pie_chart chart_categories_path(account_id: account.id), height: '180px' %>
+              <%= pie_chart chart_categories_path(account_id: account.id, month: month), height: '180px' %>
             </div>
           </div>
         </div>
@@ -169,7 +190,7 @@
             </header>
             <div class="card-content">
               <div class="content">
-                <%= pie_chart chart_paid_by_path(account_id: account.id), height: '180px' %>
+                <%= pie_chart chart_paid_by_path(account_id: account.id, month: month), height: '180px' %>
               </div>
             </div>
           </div>
@@ -188,7 +209,7 @@
             </header>
             <div class="card-content">
               <div class="content">
-                <%= pie_chart chart_paid_for_path(account_id: account.id), height: '180px' %>
+                <%= pie_chart chart_paid_for_path(account_id: account.id, month: month), height: '180px' %>
               </div>
             </div>
           </div>
@@ -210,7 +231,7 @@
           </header>
           <div class="card-content">
             <div class="content">
-              <%= line_chart chart_months_path(account_id: account.id), height: '200px' %>
+              <%= line_chart chart_months_path(account_id: account.id, month: month), height: '200px' %>
             </div>
           </div>
         </div>
