@@ -22,7 +22,7 @@ class ChartsService
     end
 
     def months_line_chart_data(expenses)
-      expenses.group_by_month(:paid_at, format: "%b %Y").sum(:amount)
+      expenses.group_by_month(:paid_at, format: "%B %Y").sum(:amount)
     end
   end
 end

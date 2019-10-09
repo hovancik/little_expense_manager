@@ -4,19 +4,19 @@ one:
   category: one
   payer: one
   account: one
-  paid_at: 2018-05-01 11:25:03
+  paid_at: <%= Time.zone.now - 1.month %>
   amount: 9.99
 
 two:
   category: two
   payer: two
   account: two
-  paid_at: 2018-05-01 11:25:03
+  paid_at: <%= Time.zone.now %>
   amount: 9.99
 
 three:
   category: two
   payer: two
   account: one
-  paid_at: 2018-05-01 11:25:03
+  paid_at: <%= Time.zone.now %>
   amount: 20.99
