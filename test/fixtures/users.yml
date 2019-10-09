@@ -2,12 +2,12 @@
 
 one:
   email: one@example.com
-  name: MyString
+  name: User 1
   password_digest: MyString
   auth_token: token_one
 
 two:
   email: two@example.com
-  name: MyString
+  name: User 2
   password_digest: MyString
   auth_token: token_two
