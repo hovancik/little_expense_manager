@@ -4,4 +4,9 @@ module AccountsHelper
     result = service.perform
     result.name
   end
+
+  def how_much_should_they_pay(account)
+    service = Accounts::WhoShouldPayNextService.new(account.id)
+    "Should pay #{service.how_much?} for others"
+  end
 end

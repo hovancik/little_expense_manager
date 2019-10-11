@@ -25,9 +25,9 @@ Right now, I am working on MVP features, so that I can use it. Some data need to
 - [x] user can manage buckets for accounts
 - [x] user can see spent-this-month stats in dashboard
 - [x] user can see buckets' spent-this-month stats in dashboard
-- [x] user can see who-should-pay-next in dashboard for shared accounts
-- [x] user can see list of expenses for current month
-- [x] user can see list of expenses for any time range
+- [x] user can see who-should-pay-next in dashboard for shared accounts (and how much they need to pay for others)
+- [x] user can see list of expenses for current/any month
+- [] user can see list of expenses for any time range
 - [x] user can edit and remove expenses
 - [x] user can see account's stats and graphs
 

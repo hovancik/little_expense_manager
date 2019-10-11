@@ -39,7 +39,7 @@
           <div class="control">
             <div class="tags has-addons">
               <span class="tag">next payer</span>
-              <span class="tag is-link"><%= who_should_pay_next(account) %></span>
+              <span class="tag is-link tooltip" data-tooltip="<%= how_much_should_they_pay(account) %>"><%= who_should_pay_next(account) %></span>
             </div>
           </div>
         <% end %>
