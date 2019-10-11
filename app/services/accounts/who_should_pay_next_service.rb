@@ -11,6 +11,11 @@ module Accounts
       end.first
     end
 
+    # TODO can this be done better?
+    def how_much?
+      payments_result(perform).abs
+    end
+
     private
 
     def paid_for(user)
