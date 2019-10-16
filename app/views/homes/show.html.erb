@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <%= render '/shared/matomo' %>
+<% end %>
+
 <section class="hero is-info is-bold is-fullheight">
   <div class="hero-head">
     <%= render 'shared/nav' %>
@@ -18,7 +22,7 @@
         </div>
         <div class="column is-offset-1 is-5">
           <figure class="image is-square" style="margin:0 auto;width:256px; ">
-            <%= image_tag 'lem256.svg' %>
+            <%= image_pack_tag 'media/images/lem256.svg' %>
           </figure>
         </div>
       </div>
