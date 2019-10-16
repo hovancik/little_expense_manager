@@ -10,7 +10,6 @@
     "chartkick": "^3.1.1",
     "noty": "^3.2.0-beta",
     "stimulus": "^1.1.1",
-    "turbolinks": "^5.2.0",
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
