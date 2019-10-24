@@ -136,7 +136,8 @@
       "enabled": true
     },
     "rubocop": {
-      "enabled": true
+      "enabled": true,
+      "channel": "rubocop-0-67"
     },
     "rubymotion": {
       "enabled": false
