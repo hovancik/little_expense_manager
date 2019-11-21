@@ -3,6 +3,6 @@ class DashboardController < ApplicationController
 
   def show
     @my_expenses = current_user.expenses
-    @accounts = current_user.accounts.includes(:buckets).order(:name)
+    @accounts = current_user.accounts.includes(:categories).order(:name)
   end
 end

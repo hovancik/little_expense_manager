@@ -20,6 +20,6 @@ class AccountsController < ApplicationController
   private
 
   def account_params
-    params.require(:account).permit(buckets_attributes: [:category_id, :amount, :id])
+    params.require(:account).permit(categories_attributes: [:bucket_amount, :id])
   end
 end

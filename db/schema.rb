@@ -29,17 +29,6 @@ ActiveRecord::Schema.define(version: 2019_11_21_063424) do
     t.index ["user_id"], name: "index_accounts_users_on_user_id"
   end
 
-  create_table "buckets", force: :cascade do |t|
-    t.bigint "category_id"
-    t.bigint "account_id"
-    t.decimal "amount", default: "0.0", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_buckets_on_account_id"
-    t.index ["category_id", "account_id"], name: "index_buckets_on_category_id_and_account_id", unique: true
-    t.index ["category_id"], name: "index_buckets_on_category_id"
-  end
-
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -102,8 +91,6 @@ ActiveRecord::Schema.define(version: 2019_11_21_063424) do
 
   add_foreign_key "accounts_users", "accounts"
   add_foreign_key "accounts_users", "users"
-  add_foreign_key "buckets", "accounts"
-  add_foreign_key "buckets", "categories"
   add_foreign_key "categories", "accounts"
   add_foreign_key "expenses", "accounts"
   add_foreign_key "expenses", "categories"
