@@ -44,14 +44,14 @@
           </div>
         <% end %>
       </div>
-      <% if account.buckets.any? %>
+      <% if account.has_buckets? %>
         <div class="field is-grouped is-grouped-multiline">
-          <% account.buckets.each do |bucket| %>
-            <% if bucket.set? %>
+          <% account.categories.each do |category| %>
+            <% if category.has_bucket? %>
               <div class="control">
-                <div class="tags has-addons tooltip" data-tooltip="<%= bucket_spent_amount(bucket) %>">
-                  <span class="tag"><%= bucket.category.name %></span>
-                  <span class="tag <%= bucket_color_class(bucket) %>"><%= bucket_filled(bucket)%></span>
+                <div class="tags has-addons tooltip" data-tooltip="<%= bucket_spent_amount(category) %>">
+                  <span class="tag"><%= category.name %></span>
+                  <span class="tag <%= bucket_color_class(category) %>"><%= bucket_filled(category)%></span>
                 </div>
               </div>
             <% end %>

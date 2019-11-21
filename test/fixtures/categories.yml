@@ -4,13 +4,16 @@ one:
   name: Category One
   description: MyText
   account: one
+  bucket_amount: 10
 
 two:
   name: Category Two
   description: MyText
   account: one
+  bucket_amount: 0
 
 three:
   name: Category Three
   description: MyText
   account: two
+  bucket_amount: 0

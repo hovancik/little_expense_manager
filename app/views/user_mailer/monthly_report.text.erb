@@ -9,9 +9,9 @@ In <%= @month.to_formatted_s(:month_and_year) %> you have spent <%= @user.expens
 ------------------------------------------------------
 
 There have been <%= account.expenses.from_month(@month).length %> expenses totalling <%= account.expenses.from_month(@month).sum(:amount) %>.
-<% account.expenses.from_month(@month).group_by(&:category).each do |category, expenses| %>
+<% account.expenses.includes(:category).from_month(@month).group_by(&:category).each do |category, expenses| %>
 
-<%= category.name %> - <%= expenses.length %> expenses totalling <%= expenses.sum(&:amount) %><% if category.bucket.present? && !category.bucket.amount.zero? %> from bucket of <%= category.bucket.amount %>.<% end %>
+<%= category.name %> - <%= expenses.length %> expenses totalling <%= expenses.sum(&:amount) %><% if category.has_bucket? %> from bucket of <%= category.bucket_amount %>.<% end %>
 <% end %>
 
 <% end %>

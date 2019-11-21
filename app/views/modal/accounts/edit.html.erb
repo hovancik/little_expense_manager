@@ -7,16 +7,15 @@
       <button class="delete" aria-label="close" data-action="modal#close"></button>
     </header>
     <section class="modal-card-body">
-      <%= form.fields_for :buckets do |bucket_form| %>
+      <%= form.fields_for :categories do |category_form| %>
         <div class="field is-horizontal">
           <div class="field-label is-normal">
-            <label class="label"><%= bucket_form.object.category.name %></label>
+            <label class="label"><%= category_form.object.name %></label>
           </div>
           <div class="field-body">
             <div class="field">
               <div class="control">
-                <%= bucket_form.number_field :amount, class: 'input' %>
-                <%= bucket_form.hidden_field :category_id, value: bucket_form.object.category.id %>
+                <%= category_form.number_field :bucket_amount, class: 'input' %>
               </div>
             </div>
           </div>

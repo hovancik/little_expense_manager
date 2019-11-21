@@ -3,8 +3,6 @@ class Modal::AccountsController < ApplicationController
   layout false
 
   def edit
-    service = Accounts::CreateMissingBucketsService.new(params[:id])
-    service.perform
     @account = current_user.accounts.find(params[:id])
   end
 end

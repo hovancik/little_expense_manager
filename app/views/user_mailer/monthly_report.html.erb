@@ -26,11 +26,11 @@
         totalling <%= account.expenses.from_month(@month).sum(:amount) %>.
       </p>
       <p>
-        <% account.expenses.from_month(@month).group_by(&:category).each do |category, expenses| %>
+        <% account.expenses.includes(:category).from_month(@month).group_by(&:category).each do |category, expenses| %>
           <b><%= category.name %></b> - <%= expenses.length %> expenses
           totalling <%= expenses.sum(&:amount) %>
-          <% if category.bucket.present? && !category.bucket.amount.zero? %>
-            from bucket of <%= category.bucket.amount %>.
+          <% if category.has_bucket? %>
+            from bucket of <%= category.bucket_amount %>.
           <% end %>
           <br/>
         <% end %>
