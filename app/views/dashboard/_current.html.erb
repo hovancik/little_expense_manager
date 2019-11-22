@@ -45,7 +45,7 @@
         </div>
         <% if account.has_buckets? %>
           <div class="field is-grouped is-grouped-multiline">
-            <% account.categories.each do |category| %>
+            <% account.categories.order(:name).each do |category| %>
               <% if category.has_bucket? %>
                 <div class="control">
                   <div class="tags has-addons tooltip" data-tooltip="<%= bucket_spent_amount(category) %>">

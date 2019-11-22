@@ -7,7 +7,7 @@
       <button class="delete" aria-label="close" data-action="modal#close"></button>
     </header>
     <section class="modal-card-body">
-      <%= form.fields_for :categories do |category_form| %>
+      <%= form.fields_for :categories, @account.categories.order(:name) do |category_form| %>
         <div class="field is-horizontal">
           <div class="field-label is-normal">
             <label class="label"><%= category_form.object.name %></label>
