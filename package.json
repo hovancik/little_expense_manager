@@ -4,7 +4,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.10.2",
     "@rails/ujs": "^6.0.1",
-    "@rails/webpacker": "^4.0.7",
+    "@rails/webpacker": "^4.2.2",
     "bulma": "^0.8.0",
     "bulma-tooltip": "^3.0.2",
     "chart.js": "^2.8.0",
@@ -14,6 +14,6 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "webpack-dev-server": "^3.8.0"
+    "webpack-dev-server": "^3.10.0"
   }
 }
