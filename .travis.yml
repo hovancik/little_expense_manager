@@ -2,7 +2,7 @@ language: ruby
 rvm:
   - 2.6.5
 before_install:
-  - gem update --system
+  # - gem update --system
 cache:
   bundler: true
   directories:
