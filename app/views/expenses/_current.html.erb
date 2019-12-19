@@ -115,7 +115,7 @@
               </tr>
             </thead>
             <tbody>
-              <% expenses.order(:paid_at).each do |expense| %>
+              <% expenses.order(:paid_at, :created_at).each do |expense| %>
                 <tr>
                   <% if account.users.size > 1 %>
                     <td><%= expense.payer.name %></td>
