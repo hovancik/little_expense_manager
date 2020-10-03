@@ -1,4 +1,4 @@
-FROM ruby:2.6.5
+FROM ruby:2.7.2
 RUN apt-get update -qq
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
@@ -15,7 +15,7 @@ ADD Gemfile Gemfile.lock /little_expense_manager/
 
 RUN bundle install
 
-#ADD package.json yarn.lock /little_expense_manager
-#RUN yarn
+ADD package.json yarn.lock /little_expense_manager/
+RUN yarn
 
 ADD . /little_expense_manager
