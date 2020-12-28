@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,700">
+    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <style media="screen">
+      body {
+        font-family: Roboto;
+        font-weight: 300;
+        padding: 0 20px;
+      }
+    </style>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Your monthly report from LEM</h1>
+    <p>
+      In <%= @year.to_formatted_s(:year) %> you have spent <%= @user.expenses.from_year(@year).sum(:amount) %>.
+    </p>
+    <% @user.accounts.each do |account| %>
+      <h2>
+        <%= account.name %>
+      </h2>
+      <p>
+        There have been <%= account.expenses.from_year(@year).length %> expenses
+        totalling <%= account.expenses.from_year(@year).sum(:amount) %>.
+      </p>
+      <p>
+        <% account.expenses.includes(:category).from_year(@year).group_by(&:category).each do |category, expenses| %>
+          <b><%= category.name %></b> - <%= expenses.length %> expenses
+          totalling <%= expenses.sum(&:amount) %>
+          <% if category.has_bucket? %>
+            from yearly bucket of <%= category.bucket_amount * 12 %>.
+          <% end %>
+          <br/>
+        <% end %>
+      </p>
+    <% end %>
+    <h2>Here are your top 5 expenses:</h2>
+    <p>
+      <% @user.expenses.includes([:account]).from_year(@year).order(amount: :desc).first(5).each do |expense| %>
+        <%= expense.amount %> from <%= expense.paid_at.strftime("%Y-%m-%d")  %> <%= expense.note.present? ? "(#{expense.note}, #{expense.account.name}/#{expense.category.name})" : "(#{expense.account.name}/#{expense.category.name})" %><br/>
+      <% end %>
+    </p>
+  </body>
+</html>
