@@ -1,6 +1,6 @@
 class SendMonthlyReportJob < ApplicationJob
   def perform(month)
-    User.find_each do |user|
+    User.where(send_reports: true) do |user|
       UserMailer.with(user: user, month: month).monthly_report.deliver_later
     end
   end
