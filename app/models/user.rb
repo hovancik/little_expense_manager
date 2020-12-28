@@ -6,5 +6,6 @@ class User < ApplicationRecord
   has_many :expenses, foreign_key: 'payer_id'
 
   validates :email, presence: true, uniqueness: true
+  validates :send_reports, presence: true
   validates :password, length: { minimum: 8 }, allow_nil: true
 end
