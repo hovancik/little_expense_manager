@@ -18,6 +18,10 @@ class Expense < ApplicationRecord
     where(paid_at: month.beginning_of_month..month.end_of_month)
   }
 
+  scope :from_year, ->(year) {
+    where(paid_at: year.change(month: 1).beginning_of_month..year.change(month: 12).end_of_month)
+  }
+
   private
 
   def users_expenses_add_up_to_amount
