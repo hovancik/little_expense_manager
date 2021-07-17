@@ -126,7 +126,7 @@
                   <td><%= expense.note %></td>
                   <% if account.users.size > 1 %>
                     <% expense.users_expenses.each do |users_expense| %>
-                      <td><%= users_expense.amount %></td>
+                      <td><%= expense.amount - users_expense.amount %></td>
                     <% end %>
                   <% end %>
                   <td>
