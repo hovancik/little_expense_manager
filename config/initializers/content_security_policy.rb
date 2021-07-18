@@ -11,19 +11,15 @@ Rails.application.config.content_security_policy do |policy|
 #   policy.object_src  :none
 #   policy.script_src  :self, :https
 #   policy.style_src   :self, :https
+#   # If you are using webpack-dev-server then specify webpack-dev-server host
+  policy.connect_src :self, :https, "http://localhost:3035", "ws://localhost:3035" if Rails.env.development?
 
 #   # Specify URI for violation reports
 #   # policy.report_uri "/csp-violation-report-endpoint"
-
-  # You need to allow webpack-dev-server host as allowed origin for connect-src.
-  # This can be done in Rails 5.2+ for development environment in the CSP initializer
-  # config/initializers/content_security_policy.rb with a snippet like this:
-  policy.connect_src :self, :https, "http://localhost:3035", "ws://localhost:3035" if Rails.env.development?
 end
 
 # If you are using UJS then enable automatic nonce generation
 # Rails.application.config.content_security_policy_nonce_generator = -> request { SecureRandom.base64(16) }
-
 
 # Set the nonce only to specific directives
 # Rails.application.config.content_security_policy_nonce_directives = %w(script-src)
