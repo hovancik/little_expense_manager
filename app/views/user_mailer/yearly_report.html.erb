@@ -13,7 +13,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Your monthly report from LEM</h1>
+    <h1>Your yearly report from LEM</h1>
     <p>
       In <%= @year.to_formatted_s(:year) %> you have spent <%= @user.expenses.from_year(@year).sum(:amount) %>.
     </p>
