@@ -1,4 +1,3 @@
-web: bundle exec puma -C config/puma.rb
-webpacker: bundle exec bin/webpack
+web: puma -C config/puma.rb
 worker: rails jobs:work
-release: rails db:migrate && rails recurring:init
+release: rails db:migrate recurring:init
