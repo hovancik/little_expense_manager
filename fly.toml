@@ -4,7 +4,7 @@ kill_timeout = 5
 
 [build]
   builder = "heroku/buildpacks:20"
-  buildpacks = ["heroku/ruby", "heroku/nodejs"]
+  buildpacks = ["heroku/nodejs", "heroku/ruby"]
 
   [build.args]
     SECRET_KEY_BASE="asdf"
