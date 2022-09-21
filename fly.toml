@@ -3,14 +3,10 @@ kill_signal = "SIGINT"
 kill_timeout = 5
 
 [build]
-  builder = "heroku/buildpacks:20"
-  buildpacks = ["heroku/nodejs", "heroku/ruby"]
-
-  [build.args]
-    SECRET_KEY_BASE="asdf"
+  dockerfile = "Dockerfile.fly"
 
 [deploy]
-  release_command = "rails db:migrate recurring:init"
+  release_command = "bin/rails db:migrate recurring:init"
 
 [env]
 
@@ -22,8 +18,8 @@ kill_timeout = 5
   exec = []
 
 [processes]
-  app = "puma -C config/puma.rb"
-  worker = "rails jobs:work"
+  app = "bin/rails server"
+  worker = "bin/rails jobs:work"
 
 [[services]]
   http_checks = []
