@@ -35,7 +35,7 @@
             <span class="tag is-primary"><%= expenses.length %></span>
           </div>
         </div>
-        <% if account.users.size > 1 %>
+        <% if account.users.size > 1 && account.calculate_next_payer %>
           <div class="control">
             <div class="tags has-addons">
               <span class="tag">next payer</span>
@@ -99,14 +99,14 @@
           <table class="table is-hoverable is-fullwidth is-narrow">
             <thead>
               <tr>
-                <% if account.users.size > 1 %>
+                <% if account.users.size > 1 && account.calculate_next_payer  %>
                   <th>Payer</th>
                 <% end %>
                 <th>Category</th>
                 <th>Paid at</th>
                 <th>Amount</th>
                 <th>Note</th>
-                <% if account.users.size > 1 %>
+                <% if account.users.size > 1 && account.calculate_next_payer  %>
                   <% account.users.each do |user| %>
                     <th>For <%= user.name %></th>
                   <% end %>
@@ -117,14 +117,14 @@
             <tbody>
               <% expenses.order(:paid_at, :created_at).each do |expense| %>
                 <tr>
-                  <% if account.users.size > 1 %>
+                  <% if account.users.size > 1 && account.calculate_next_payer  %>
                     <td><%= expense.payer.name %></td>
                   <% end %>
                   <td><%= expense.category.name %></td>
                   <td><%= expense.paid_at.strftime("%Y-%m-%d") %></td>
                   <td><%= expense.amount %></td>
                   <td><%= expense.note %></td>
-                  <% if account.users.size > 1 %>
+                  <% if account.users.size > 1 && account.calculate_next_payer  %>
                     <% expense.users_expenses.each do |users_expense| %>
                       <td><%= expense.amount - users_expense.amount %></td>
                     <% end %>
@@ -156,7 +156,7 @@
     </div>
 
     <div class="columns is-gapless">
-      <div class="column <%= account.users.size > 1 ? 'is-one-third' : 'is-full' %> is-full-mobile">
+      <div class="column <%= account.users.size > 1 && account.calculate_next_payer  ? 'is-one-third' : 'is-full' %> is-full-mobile">
         <div class="card">
           <header class="card-header">
             <p class="card-header-title">
@@ -175,7 +175,7 @@
           </div>
         </div>
       </div>
-      <% if account.users.size > 1 %>
+      <% if account.users.size > 1 && account.calculate_next_payer %>
         <div class="column is-one-third is-full-mobile">
           <div class="card">
             <header class="card-header">
