@@ -15,7 +15,11 @@ class ExpensesController < ApplicationController
   def index
     @month = month(params[:month])
     @account = current_user.accounts.find(params[:account_id])
-    @expenses = @account.expenses.includes(:payer,:users_expenses,:category).from_month(@month)
+    if @account.calculate_next_payer
+      @expenses = @account.expenses.includes(:payer,:users_expenses,:category).from_month(@month)
+    else
+      @expenses = @account.expenses.includes(:category).from_month(@month)
+    end
   end
 
   def update

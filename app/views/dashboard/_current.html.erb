@@ -34,7 +34,7 @@
               <span class="tag is-primary"><%= account.expenses.from_this_month.length %></span>
             </div>
           </div>
-          <% if account.users.size > 1 %>
+          <% if account.users.size > 1 && account.calculate_next_payer %>
             <div class="control">
               <div class="tags has-addons">
                 <span class="tag">next payer</span>
