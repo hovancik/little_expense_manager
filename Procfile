@@ -1,3 +1,3 @@
-web: puma -C config/puma.rb
+app: puma -C config/puma.rb
 worker: rails jobs:work
 release: rails db:migrate recurring:init
