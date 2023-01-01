@@ -1,12 +1,27 @@
 FROM ruby:3.1.2
-RUN apt-get update -qq
 
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-RUN apt-get install -y nodejs
-RUN apt-get update && apt-get install -y yarn
+RUN apt-get update \
+    && apt-get install -y curl \
+    && apt-get -y autoclean
+RUN mkdir /usr/local/nvm
+
+ENV NVM_DIR /usr/local/nvm
+ENV NODE_VERSION 16.18.1
+
+RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+
+RUN source $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default \
+    && npm install --global yarn
+
+ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
+ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+
+RUN npm install --global yarn
 
 RUN mkdir /little_expense_manager
 WORKDIR /little_expense_manager
