@@ -3,8 +3,8 @@ kill_signal = "SIGINT"
 kill_timeout = 5
 
 [build]
-  builder = "heroku/buildpacks:20"
-  buildpacks = ["heroku/nodejs", "heroku/ruby"]
+  builder = "heroku/builder-classic:22"
+  buildpacks = ["heroku/ruby"]
 
   [build.args]
     SECRET_KEY_BASE="asdf"

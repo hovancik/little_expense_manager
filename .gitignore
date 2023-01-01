@@ -21,6 +21,10 @@
 !/tmp/cache               
 !/tmp/cache/.keep
 
+/tmp/cache/webpacker/* 
+!/tmp/cache/webpacker               
+!/tmp/cache/webpacker/.keep
+
 # Ignore uploaded files in development
 /storage/*
 
@@ -48,7 +52,3 @@ coverage
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
-
-/tmp/pids/* 
-!/tmp/pids               
-!/tmp/pids/.keep
