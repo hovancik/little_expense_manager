@@ -1,8 +1,8 @@
 {
   "name": "little_expense_manager",
   "private": true,
-  "engines" : {
-    "node" : "16.17.0"
+  "engines": {
+    "node": "16.18.1"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.10.2",
