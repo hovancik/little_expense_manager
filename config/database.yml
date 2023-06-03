@@ -82,6 +82,3 @@ test:
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  # for bit.io
-  sslmode: "require"
-  idle_timeout: 60 # default for bit.io
