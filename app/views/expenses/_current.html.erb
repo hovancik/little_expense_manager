@@ -155,6 +155,28 @@
       </div>
     </div>
 
+    <div class="columns">
+      <div class="column">                
+        <span class="icon is-medium is-pulled-right" data-controller="load-modal has-text-link"
+          data-load-modal-url=<%= edit_modal_account_path(account, refresh_id: 'current-expenses-refresh',
+            refresh_url: loader_expenses_path(account_id: account.id, month: month)) %> >
+          <a class="tooltip" data-action="load-modal#open" data-tooltip="Edit buckets for the <%= account.name%> account">
+            <i class="fa fa-coins fa-lg"></i>
+          </a>
+        </span>
+        <span class="icon is-medium is-pulled-right">
+          <a class="tooltip has-text-info" data-tooltip="List expenses of the <%= account.name%> account" href="<%= account_expenses_path(account) %>">
+            <i class="fas fa-list-ol fa-lg"></i>
+          </a>
+        </span>
+        <span class="icon is-medium is-pulled-right" data-controller="load-modal" data-load-modal-url=<%= new_modal_expense_path(account_id: account.id, refresh_id: 'current-expenses-refresh', refresh_url: loader_expenses_path(account_id: account.id, month: month))%> >
+          <a class="tooltip has-text-success" data-action="load-modal#open" data-tooltip="Add new expense to the <%= account.name%> account">
+            <i class="far fa-plus-square fa-lg"></i>
+          </a>
+        </span>
+      </div>  
+    </div>  
+
     <div class="columns is-gapless">
       <div class="column <%= account.users.size > 1 && account.calculate_next_payer  ? 'is-one-third' : 'is-full' %> is-full-mobile">
         <div class="card">

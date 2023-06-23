@@ -76,5 +76,5 @@ Rails.application.configure do
   end
   
   config.hosts << /.*\.codeanywhere\.com/
-
+  config.hosts << /.*\.github\.dev/
 end
