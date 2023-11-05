@@ -8,7 +8,7 @@ RUN apt-get update \
 RUN mkdir /usr/local/nvm
 
 ENV NVM_DIR /usr/local/nvm
-ENV NODE_VERSION 16.18.1
+ENV NODE_VERSION 20.9.0
 
 RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 
