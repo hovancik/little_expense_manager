@@ -22,7 +22,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 16.18.1     
+          node-version: 20.9.0
 
       - name: Install dependent libraries
         run: sudo apt-get install libpq-dev
@@ -56,6 +56,7 @@ jobs:
       - name: Compile Webpacker
         run: bundle exec rails webpacker:compile
         env:
+          NODE_OPTIONS: --openssl-legacy-provider
           RAILS_ENV: test
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.0.0
