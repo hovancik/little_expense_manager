@@ -59,7 +59,7 @@ jobs:
           NODE_OPTIONS: --openssl-legacy-provider
           RAILS_ENV: test
       - name: Test & publish code coverage
-        uses: paambaati/codeclimate-action@v3.0.0
+        uses: paambaati/codeclimate-action@v9.0.0
         env:
           RAILS_ENV: test
           POSTGRES_USER: postgres
