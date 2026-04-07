@@ -17,7 +17,7 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.3.5'
+          ruby-version: '3.4.9'
           bundler-cache: true
 
       - uses: actions/setup-node@v3
@@ -45,18 +45,14 @@ jobs:
         run: |
           npm install --global yarn
 
-      - name: Add webpacker before yarn install # solves node-sass error
+      - name: Install JS dependencies
+        run: yarn install
+
+      - name: Build assets
         run: |
-          yarn add @rails/webpacker
-
-      # - name: yarn install --check-files # --check-files ensures @rails/webpacker dependencies aren't overwritten
-      #   run: |
-      #     sudo yarn install --check-files
-
-      - name: Compile Webpacker
-        run: bundle exec rails webpacker:compile
+          yarn build
+          yarn build:css
         env:
-          NODE_OPTIONS: --openssl-legacy-provider
           RAILS_ENV: test
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v9.0.0
