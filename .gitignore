@@ -21,34 +21,24 @@
 !/tmp/cache               
 !/tmp/cache/.keep
 
-/tmp/cache/webpacker/* 
-!/tmp/cache/webpacker               
-!/tmp/cache/webpacker/.keep
-
 # Ignore uploaded files in development
 /storage/*
 
 /node_modules
 /yarn-error.log
+yarn-debug.log*
+.yarn-integrity
 
 /public/assets
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-/public/packs
-/public/packs-test
-/node_modules
-yarn-debug.log*
-.yarn-integrity
 
 coverage
 
 .env
 
-/public/packs
-/public/packs-test
-/node_modules
-/yarn-error.log
-yarn-debug.log*
-.yarn-integrity
+# Ignore compiled asset builds; keep placeholder to ensure dir exists
+/app/assets/builds/*
+!/app/assets/builds/.keep

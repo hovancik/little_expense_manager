@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require "fileutils"
+require 'fileutils'
 
 # path to your application root.
 APP_ROOT = File.expand_path('..', __dir__)
@@ -15,15 +15,24 @@ FileUtils.chdir APP_ROOT do
 
   puts '== Installing dependencies =='
   system! 'gem install bundler --conservative'
-  system('bundle check') || system!('bundle install')
+  system! 'bundle install'
 
   # Install JavaScript dependencies
-  system! 'bin/yarn'
+  system! 'yarn install'
+
+  # Build JavaScript and CSS
+  system! 'yarn build'
+  system! 'yarn build:css'
 
   # puts "\n== Copying sample files =="
   # unless File.exist?('config/database.yml')
   #   FileUtils.cp 'config/database.yml.sample', 'config/database.yml'
   # end
+
+  unless File.exist?('.env')
+    FileUtils.cp '.env.example', '.env'
+    puts "\n== Created .env from .env.example =="
+  end
 
   puts "\n== Preparing database =="
   system! 'bin/rails db:prepare'

@@ -1,4 +1,4 @@
-import { Controller } from 'stimulus'
+import { Controller } from '@hotwired/stimulus'
 import Noty from 'noty'
 import Chartkick from 'chartkick'
 import 'chart.js'

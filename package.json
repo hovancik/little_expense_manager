@@ -2,21 +2,25 @@
   "name": "little_expense_manager",
   "private": true,
   "engines": {
-    "node": "20.9.0"
+    "node": ">=20"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.10.2",
+    "@fortawesome/fontawesome-free": "^7.1.0",
+    "@hotwired/stimulus": "^3.2.0",
     "@rails/ujs": "^6.0.1",
-    "@rails/webpacker": "^5.3.0",
     "bulma": "^0.9.1",
     "bulma-tooltip": "^3.0.2",
-    "chart.js": "^2.8.0",
-    "chartkick": "^3.1.1",
-    "noty": "^3.2.0-beta",
-    "stimulus": "^1.1.1",
-    "whatwg-fetch": "^3.0.0"
+    "chart.js": "^4.5.1",
+    "chartkick": "^5.0.1",
+    "noty": "^3.2.0-beta"
   },
   "devDependencies": {
-    "webpack-dev-server": "^3.10.0"
+    "esbuild": "^0.20.0",
+    "sass": "^1.70.0"
+  },
+  "scripts": {
+    "build": "esbuild app/javascript/application.js --bundle --minify --outdir=app/assets/builds --public-path=/assets",
+    "build:dev": "esbuild app/javascript/application.js --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
+    "build:css": "sass ./app/assets/stylesheets/application.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
   }
 }

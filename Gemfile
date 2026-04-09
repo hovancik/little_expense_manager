@@ -1,7 +1,13 @@
 source 'https://rubygems.org'
 git_source(:github) { |_repo| "https://github.com/#{repo}.git" }
 
-ruby '3.3.5'
+ruby '3.4.9'
+
+# Ruby 3.4 removed these from default gems
+gem 'base64'
+gem 'bigdecimal'
+gem 'drb'
+gem 'mutex_m'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1'
@@ -9,10 +15,12 @@ gem 'rails', '~> 6.1'
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '< 6'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'mini_racer', platforms: :ruby
+# Bundle and transpile JavaScript
+gem 'jsbundling-rails'
+# Bundle and process CSS
+gem 'cssbundling-rails'
+# The asset pipeline
+gem 'sprockets-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.9', '>= 2.9.1'

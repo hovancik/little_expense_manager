@@ -1,0 +1,13 @@
+// FontAwesome 7 - Sprockets serves webfonts from node_modules via assets.rb
+@use '@fortawesome/fontawesome-free/scss/variables' with (
+  $font-path: '@fortawesome/fontawesome-free/webfonts'
+);
+@use '@fortawesome/fontawesome-free/scss/fontawesome';
+@use '@fortawesome/fontawesome-free/scss/brands';
+@use '@fortawesome/fontawesome-free/scss/regular';
+@use '@fortawesome/fontawesome-free/scss/solid';
+
+@import 'bulma/bulma';
+@import 'bulma-tooltip/src/sass/index';
+@import "noty/src/noty";
+@import "noty/src/themes/mint";
