@@ -1,6 +1,8 @@
 import Rails from '@rails/ujs'
 Rails.start()
 
+import "chartkick/chart.js"
+
 import { Application } from '@hotwired/stimulus'
 
 import ExpenseAmountController from './controllers/expense_amount_controller'
