@@ -1,6 +1,11 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
+unless Rails.env.development?
+  puts 'Seeds are only intended for development. Set FORCE_SEED=1 to override.'
+  exit unless ENV['FORCE_SEED']
+end
+
 user = User.create!(
   email: 'demo@example.com',
   name: 'Demo User',
