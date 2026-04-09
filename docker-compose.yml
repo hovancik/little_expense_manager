@@ -5,7 +5,7 @@ services:
     build: .
     env_file:
       - '.env.docker'
-    command: yarn build --watch
+    command: yarn build:dev --watch
     volumes:
       - .:/little_expense_manager
     network_mode: "bridge"
