@@ -1,9 +1,5 @@
 import { Controller } from '@hotwired/stimulus'
 import Noty from 'noty'
-import Chartkick from 'chartkick'
-import 'chart.js'
-
-Chartkick.use(Chart)
 
 export default class extends Controller {
   static targets = ['error', 'submit']
