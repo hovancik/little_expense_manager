@@ -6,7 +6,7 @@ class Modal::ExpensesController < ApplicationController
     @account = current_user.accounts.find(params[:account_id])
     @expense = Expense.new
     @default_paid_at = begin
-      month(params[:month])
+      month(params[:month].to_s.presence)
     rescue ArgumentError
       Time.zone.now
     end
