@@ -42,7 +42,7 @@
       <div class="field">
         <label class="label">Date</label>
         <div class="control">
-          <%= f.date_field :paid_at, class: 'input', value: Time.zone.now.strftime('%Y-%m-%d') %>
+          <%= f.date_field :paid_at, class: 'input', value: @default_paid_at.strftime('%Y-%m-%d') %>
         </div>
       </div>
       <div class="field">
