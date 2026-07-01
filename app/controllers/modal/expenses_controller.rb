@@ -5,7 +5,11 @@ class Modal::ExpensesController < ApplicationController
   def new
     @account = current_user.accounts.find(params[:account_id])
     @expense = Expense.new
-    @default_paid_at = month(params[:month])
+    @default_paid_at = begin
+      month(params[:month])
+    rescue ArgumentError
+      Time.zone.now
+    end
     @account.users.each do |user|
       @expense.users_expenses.build(user_id: user.id)
     end
