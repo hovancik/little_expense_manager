@@ -1,4 +1,4 @@
-FROM ruby:3.2
+FROM ruby:3.4.12
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 

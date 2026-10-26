@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |_repo| "https://github.com/#{repo}.git" }
 
-ruby '3.4.9'
+ruby '3.4.12'
 
 # Ruby 3.4 removed these from default gems
 gem 'base64'
@@ -41,6 +41,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # A Ruby gem to load environment variables from `.env`.
   gem 'dotenv-rails'
+  gem 'minitest', '~> 5.16' # Pin to a stable 5.x release compatible with Rails 6.1
 end
 
 group :development do
