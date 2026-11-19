@@ -10,16 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_22_080839) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_09_22_080839) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "accounts", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "calculate_next_payer", default: false, null: false
   end
 
@@ -35,7 +34,7 @@ ActiveRecord::Schema.define(version: 2022_09_22_080839) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -48,7 +47,7 @@ ActiveRecord::Schema.define(version: 2022_09_22_080839) do
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
     t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -61,8 +60,8 @@ ActiveRecord::Schema.define(version: 2022_09_22_080839) do
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "account_id"
     t.decimal "bucket_amount", default: "0.0", null: false
     t.index ["account_id"], name: "index_categories_on_account_id"
@@ -73,13 +72,13 @@ ActiveRecord::Schema.define(version: 2022_09_22_080839) do
     t.integer "attempts", default: 0, null: false
     t.text "handler", null: false
     t.text "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
+    t.datetime "run_at", precision: nil
+    t.datetime "locked_at", precision: nil
+    t.datetime "failed_at", precision: nil
     t.string "locked_by"
     t.string "queue"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
@@ -87,10 +86,10 @@ ActiveRecord::Schema.define(version: 2022_09_22_080839) do
     t.bigint "category_id"
     t.bigint "payer_id"
     t.bigint "account_id"
-    t.datetime "paid_at", null: false
+    t.datetime "paid_at", precision: nil, null: false
     t.decimal "amount", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "note"
     t.index ["account_id"], name: "index_expenses_on_account_id"
     t.index ["category_id"], name: "index_expenses_on_category_id"
@@ -102,8 +101,8 @@ ActiveRecord::Schema.define(version: 2022_09_22_080839) do
     t.string "name"
     t.string "password_digest", null: false
     t.string "auth_token"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "send_reports", default: false, null: false
     t.index ["auth_token"], name: "index_users_on_auth_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -113,8 +112,8 @@ ActiveRecord::Schema.define(version: 2022_09_22_080839) do
     t.bigint "user_id"
     t.bigint "expense_id"
     t.decimal "amount", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["expense_id"], name: "index_users_expenses_on_expense_id"
     t.index ["user_id"], name: "index_users_expenses_on_user_id"
   end
