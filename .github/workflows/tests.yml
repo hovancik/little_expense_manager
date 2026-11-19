@@ -25,7 +25,7 @@ jobs:
           node-version: 20.9.0
 
       - name: Install dependent libraries
-        run: sudo apt-get install libpq-dev
+        run: sudo apt-get update && sudo apt-get install -y libpq-dev chromium chromium-driver
 
       - name: Bundle install
         run: |
@@ -59,4 +59,6 @@ jobs:
           RAILS_ENV: test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-        run: bundle exec rails test
+        run: |
+          bundle exec rails test
+          bundle exec rails test:system
