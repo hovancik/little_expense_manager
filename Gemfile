@@ -1,12 +1,13 @@
 source 'https://rubygems.org'
 git_source(:github) { |_repo| "https://github.com/#{repo}.git" }
 
-ruby '3.4.12'
+ruby '3.4.13'
 
 # Ruby 3.4 removed these from default gems
 gem 'base64'
 gem 'bigdecimal'
 gem 'drb'
+gem 'json', '< 3'
 gem 'mutex_m'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -52,7 +53,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   # n+1
-  gem 'bullet'
+  gem 'bullet', '< 8'
   gem 'rubocop'
 end
 
