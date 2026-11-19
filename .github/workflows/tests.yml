@@ -25,7 +25,7 @@ jobs:
           node-version: 20.9.0
 
       - name: Install dependent libraries
-        run: sudo apt-get update && sudo apt-get install -y libpq-dev chromium chromium-driver
+        run: sudo apt-get install libpq-dev
 
       - name: Bundle install
         run: |
@@ -62,3 +62,11 @@ jobs:
         run: |
           bundle exec rails test
           bundle exec rails test:system
+
+      - name: Upload system test screenshots
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: system-test-screenshots
+          path: tmp/screenshots/*.png
+          if-no-files-found: ignore

@@ -17,6 +17,10 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
                 url: "http://#{ENV["SELENIUM_HOST"]}:4444/wd/hub"
               }
   else
-    driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
+    driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400] do |chrome_options|
+      chrome_options.binary = ENV["CHROME_BIN"] if ENV["CHROME_BIN"]
+      chrome_options.add_argument("--no-sandbox") if ENV["CI"]
+      chrome_options.add_argument("--disable-dev-shm-usage") if ENV["CI"]
+    end
   end
 end
