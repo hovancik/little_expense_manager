@@ -59,4 +59,14 @@ jobs:
           RAILS_ENV: test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-        run: bundle exec rails test
+        run: |
+          bundle exec rails test
+          bundle exec rails test:system
+
+      - name: Upload system test screenshots
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: system-test-screenshots
+          path: tmp/screenshots/*.png
+          if-no-files-found: ignore
