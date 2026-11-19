@@ -78,6 +78,7 @@ gem 'scout_apm'
 gem 'mailgun-ruby'
 
 # Background jobs
+gem 'delayed_job', '< 4.2'
 gem 'delayed_job_active_record'
 gem 'delayed_job_recurring'
 
