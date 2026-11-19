@@ -5,12 +5,12 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^7.1.0",
+    "@fortawesome/fontawesome-free": "^7.3.1",
     "@hotwired/stimulus": "^3.2.0",
     "@rails/ujs": "^6.0.1",
     "bulma": "^0.9.1",
     "bulma-tooltip": "^3.0.2",
-    "chart.js": "^4.5.1",
+    "chart.js": "^4.6.1",
     "chartkick": "^5.0.1",
     "noty": "^3.2.0-beta"
   },
