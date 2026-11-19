@@ -11,7 +11,7 @@ gem 'json', '< 3'
 gem 'mutex_m'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 7.2.4'
+gem 'rails', '~> 8.0.5.2'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
