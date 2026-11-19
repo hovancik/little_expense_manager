@@ -15,7 +15,7 @@
     "noty": "^3.2.0-beta"
   },
   "devDependencies": {
-    "esbuild": "^0.20.0",
+    "esbuild": "^0.28.1",
     "sass": "^1.70.0"
   },
   "scripts": {
