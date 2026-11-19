@@ -11,7 +11,7 @@ gem 'json', '< 3'
 gem 'mutex_m'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.1'
+gem 'rails', '~> 7.0.10'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -42,7 +42,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # A Ruby gem to load environment variables from `.env`.
   gem 'dotenv-rails'
-  gem 'minitest', '~> 5.16' # Pin to a stable 5.x release compatible with Rails 6.1
+  gem 'minitest', '~> 5.16' # Keep the 5.x line used by the test suite.
 end
 
 group :development do
@@ -50,10 +50,9 @@ group :development do
   gem 'listen', '~> 3.1', '>= 3.1.5'
   gem 'web-console', '~> 4.0', '>= 4.0.1'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring', '~> 4.0'
   # n+1
-  gem 'bullet', '< 8'
+  gem 'bullet'
   gem 'rubocop'
 end
 
