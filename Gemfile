@@ -11,7 +11,7 @@ gem 'json', '< 3'
 gem 'mutex_m'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 7.1.6'
+gem 'rails', '~> 7.2.4'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -77,7 +77,6 @@ gem 'scout_apm'
 gem 'mailgun-ruby'
 
 # Background jobs
-gem 'delayed_job', '< 4.2'
 gem 'delayed_job_active_record'
 gem 'delayed_job_recurring'
 
