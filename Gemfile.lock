@@ -132,6 +132,7 @@ GEM
       multipart-post (~> 2.0)
     faraday-net_http (3.5.0)
       net-http (~> 0.5)
+    ffi (1.17.4)
     ffi (1.17.4-aarch64-linux-gnu)
     ffi (1.17.4-x86_64-linux-gnu)
     globalid (1.4.0)
@@ -173,6 +174,7 @@ GEM
     marcel (1.2.1)
     matrix (0.4.3)
     mini_mime (1.1.5)
+    mini_portile2 (2.8.9)
     minitest (5.27.0)
     msgpack (1.8.7)
     multipart-post (2.4.1)
@@ -190,6 +192,9 @@ GEM
     net-smtp (0.5.2)
       net-protocol
     nio4r (2.7.5)
+    nokogiri (1.19.7)
+      mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
     nokogiri (1.19.7-aarch64-linux-gnu)
       racc (~> 1.4)
     nokogiri (1.19.7-x86_64-linux-gnu)
@@ -198,15 +203,17 @@ GEM
     parser (3.3.14.0)
       ast (~> 2.4.1)
       racc
+    pg (1.7.0)
     pg (1.7.0-aarch64-linux)
     pg (1.7.0-x86_64-linux)
     pp (0.6.4)
       prettyprint
     prettyprint (0.2.1)
+    prism (2.1.0)
     prism (2.1.0-aarch64-linux-gnu)
     prism (2.1.0-x86_64-linux-gnu)
     public_suffix (7.0.5)
-    puma (6.6.1)
+    puma (7.2.1)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.2.8)
@@ -354,7 +361,7 @@ DEPENDENCIES
   net-pop
   net-smtp
   pg (>= 0.18, < 2.0)
-  puma (~> 6.0)
+  puma (~> 7.2)
   rails (~> 8.1.4.1)
   rollbar
   rubocop
