@@ -7,7 +7,7 @@ ruby '3.4.13'
 gem 'base64'
 gem 'bigdecimal'
 gem 'drb'
-gem 'json', '< 3'
+gem 'json', '~> 3.1'
 gem 'mutex_m'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -15,7 +15,7 @@ gem 'rails', '~> 8.1.4.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
-gem 'puma', '~> 6.0'
+gem 'puma', '~> 8.1.2'
 # Bundle and transpile JavaScript
 gem 'jsbundling-rails'
 # Bundle and process CSS
@@ -42,7 +42,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # A Ruby gem to load environment variables from `.env`.
   gem 'dotenv-rails'
-  gem 'minitest', '~> 5.16' # Keep the 5.x line used by the test suite.
+  gem 'minitest', '~> 6.1'
 end
 
 group :development do

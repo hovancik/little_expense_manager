@@ -3,12 +3,12 @@ FROM ruby:3.4.13
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN apt-get update \
-    && apt-get install -y curl \
+    && apt-get install -y curl libatomic1 \
     && apt-get -y autoclean
 RUN mkdir /usr/local/nvm
 
 ENV NVM_DIR /usr/local/nvm
-ENV NODE_VERSION 20.9.0
+ENV NODE_VERSION 26.13.1
 
 RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 
